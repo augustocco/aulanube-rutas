@@ -12,6 +12,15 @@ Cierra el caso de AulaNube (Unidad 1: [aulanube](https://github.com/augustocco/a
 
 Patrones: Strategy (ruta), Composite + Iterator (contenido), Command (navegación y «Atrás»), Observer (invalidación de caché), Cache-Aside, Repository y cola de escritura.
 
+## En la nube
+
+Desplegado en el clúster K3s de la Unidad 1 (Oracle Cloud, sa-bogota-1), espacio de nombres `aulanube-rutas`:
+
+- Iteración 3: https://rutas.149-130-191-139.sslip.io
+- Iteración 1: https://rutas-v1.149-130-191-139.sslip.io
+
+Para volver a desplegar: `bash scripts/desplegar.sh` (requiere que la lista de seguridad de OCI permita SSH desde la IP pública actual).
+
 ## Ejecución
 
 Python 3.11 o superior, sin dependencias.

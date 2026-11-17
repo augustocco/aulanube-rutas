@@ -1,0 +1,8 @@
+**/__pycache__
+registros
+docs
+tests
+scripts
+infra
+.git
+*.db*

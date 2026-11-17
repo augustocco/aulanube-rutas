@@ -325,7 +325,9 @@ parrafo(
     "colaboradores de las dos empresas del caso. La vista tiene tres pantallas: «Mi ruta», el lector de lecciones y "
     "el catálogo, y en cada respuesta muestra los milisegundos y las consultas SQL que costó; un parámetro elige "
     "la iteración (v1, v2 o v3). Las 14 pruebas automatizadas verifican el dominio "
-    "y que la iteración 2 devuelva exactamente lo mismo que la 1, y la 3 lo mismo que la 2, con menos consultas.")
+    "y que la iteración 2 devuelva exactamente lo mismo que la 1, y la 3 lo mismo que la 2, con menos consultas. "
+    "Las iteraciones 1 y 3 están desplegadas en el clúster K3s de la Unidad 1 en Oracle Cloud, en "
+    "https://rutas-v1.149-130-191-139.sslip.io y https://rutas.149-130-191-139.sslip.io.")
 if (CAP / "ruta-v1-v3.png").exists():
     figura("La misma colaboradora con la ruta de la iteración 1 y de la iteración 3", CAP / "ruta-v1-v3.png", 6.2,
            "Capturas del prototipo. A la izquierda, orden alfabético; a la derecha, ruta por urgencia.")

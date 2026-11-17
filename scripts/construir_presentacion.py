@@ -178,8 +178,8 @@ BLOQUES = [
      "por el retorno. El avanzado de alturas vence el día 8 y necesita el básico; el básico vence con la campaña, el "
      "día 20. Si solo miro fechas, el básico parece no tener prisa. La estrategia por urgencia le hereda al básico la "
      "fecha del avanzado, menos el tiempo de estudio del avanzado. Así el básico pasa adelante y los dos quedan a tiempo."),
-    ("7:10 – 9:40", "9 · Demostración", "Pantalla: servidor v1 en :7401 y v3 en :7403, colaboradora Luisa Rodríguez.",
-     "Ahora el prototipo. A la izquierda, la versión 1: la misma operaria ve primero dos electivos y su alturas avanzado "
+    ("7:10 – 9:40", "9 · Demostración", "Pantalla: https://rutas-v1.149-130-191-139.sslip.io y https://rutas.149-130-191-139.sslip.io, colaboradora Luisa Rodríguez Jaimes.",
+     "Ahora el prototipo, desplegado en Oracle Cloud en el mismo clúster de la Unidad 1. A la izquierda, la versión 1: la misma operaria ve primero dos electivos y su alturas avanzado "
      "sale «tarde»; abajo se ve que la página costó 92 consultas. A la derecha, la versión 3: inducción, alturas básico "
      "y alturas avanzado, los cuatro obligatorios a tiempo, y la ruta salió de la caché sin tocar la base. Doy clic en "
      "«Continuar» y me lleva directo a la lección 3.1 de la inducción. Marco como completada y sigo: pasa a la 3.2. "
@@ -310,7 +310,7 @@ caja(s, 4.45, 1.85, 4.9, 2.9, [
 # 9 · Demostración
 s = prs.slides.add_slide(L["SECCION"])
 s.placeholders[100].text = "Demostración"
-s.placeholders[101].text = "Versión 1 en http://127.0.0.1:7401 · versión 3 en http://127.0.0.1:7403"
+s.placeholders[101].text = "En Oracle Cloud: rutas-v1.149-130-191-139.sslip.io (iteración 1) · rutas.149-130-191-139.sslip.io (iteración 3)"
 for i, tx in enumerate(["Misma colaboradora en v1 y v3: orden, «tarde» y consultas SQL",
                         "«Continuar» lleva directo a la lección pendiente",
                         "Completar y seguir; la ruta se actualiza (Observer)",
@@ -395,10 +395,10 @@ g.add_paragraph("Arquitectura de Software · Unidad 3 · Actividad 6 «Navegando
                 "(máximo 15). Subir a YouTube como «No listado».")
 prep = g.add_paragraph()
 prep.add_run("Antes de grabar: ").bold = True
-prep.add_run("en una consola, python -m rutas.servidor --version v1 --db registros/demo-v1.db --puerto 7401; en otra, "
-             "python -m rutas.servidor --version v3 --db registros/demo-v3.db --puerto 7403 (copias limpias de "
-             "registros/base.db). Abrir los dos en el navegador y elegir a Luisa Rodríguez Jaimes. En PowerPoint, usar la "
-             "vista del moderador para leer las notas.")
+prep.add_run("abrir en dos pestañas https://rutas-v1.149-130-191-139.sslip.io (iteración 1) y "
+             "https://rutas.149-130-191-139.sslip.io (iteración 3), desplegadas en Oracle Cloud, y elegir a Luisa "
+             "Rodríguez Jaimes. Para empezar con datos limpios, reiniciar los despliegues (cada pod recrea su base). "
+             "En PowerPoint, usar la vista del moderador para leer las notas.")
 tabla = g.add_table(rows=1, cols=3)
 tabla.style = "Light Grid Accent 1"
 for c, h in zip(tabla.rows[0].cells, ("Tiempo", "Diapositiva y pantalla", "Qué decir")):
