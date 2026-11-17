@@ -2,6 +2,7 @@
 !include estilo.iuml
 title AulaNube Rutas · Secuencia de «Continuar» y «Marcar como completada»
 autonumber "<b>0."
+hide footbox
 
 actor Colaborador as U
 participant "Vista\n«Command»" as V

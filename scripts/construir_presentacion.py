@@ -93,6 +93,13 @@ def insignia(s, x, y, texto, color=AC1, d=0.42):
 
 
 def imagen(s, ruta, x, y, w=None, h=None, marco=True):
+    """Si se dan ancho y alto, la imagen se ajusta dentro de esa caja sin deformarse y queda centrada."""
+    if w and h:
+        from PIL import Image
+        ancho, alto = Image.open(ruta).size
+        escala = min(w / ancho, h / alto)
+        x, y = x + (w - ancho * escala) / 2, y + (h - alto * escala) / 2
+        w, h = ancho * escala, alto * escala
     pic = s.shapes.add_picture(str(ruta), Inches(x), Inches(y), Inches(w) if w else None, Inches(h) if h else None)
     if marco:
         pic.line.color.rgb = RGBColor(0xD5, 0xEA, 0xE7)
@@ -287,7 +294,7 @@ for i, (tit, desc) in enumerate(pats):
 
 # 7 · Secuencia
 s = contenido("Secuencia: «Continuar» y «Completar»")
-imagen(s, UML / "secuencia.png", 0.5, 1.15, w=9.0)
+imagen(s, UML / "secuencia.png", 0.5, 1.1, w=9.0, h=4.0)
 
 # 8 · Algoritmo
 s = contenido("Ruta por urgencia: el GPS de la formación")
