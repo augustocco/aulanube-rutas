@@ -1,0 +1,529 @@
+{
+ "E1": {
+  "alfabetico": {
+   "descripcion": "Orden alfabético (página «Mis cursos» actual)",
+   "cursos_obligatorios": 7012,
+   "a_tiempo_pct": 61.1,
+   "colaboradores_al_dia_pct": 36.9,
+   "atraso_medio_dias": 14.5,
+   "vencimientos_con_prerrequisito": 287,
+   "vencimientos_con_prerrequisito_a_tiempo_pct": 12.2,
+   "continuar_lleva_a_obligatorio_pct": 44.8
+  },
+  "fecha": {
+   "descripcion": "Primero lo que vence antes",
+   "cursos_obligatorios": 7012,
+   "a_tiempo_pct": 74.3,
+   "colaboradores_al_dia_pct": 52.1,
+   "atraso_medio_dias": 11.2,
+   "vencimientos_con_prerrequisito": 287,
+   "vencimientos_con_prerrequisito_a_tiempo_pct": 23.0,
+   "continuar_lleva_a_obligatorio_pct": 99.9
+  },
+  "urgencia": {
+   "descripcion": "Urgencia con prerrequisitos (fecha límite efectiva)",
+   "cursos_obligatorios": 7012,
+   "a_tiempo_pct": 74.7,
+   "colaboradores_al_dia_pct": 54.0,
+   "atraso_medio_dias": 11.1,
+   "vencimientos_con_prerrequisito": 287,
+   "vencimientos_con_prerrequisito_a_tiempo_pct": 41.5,
+   "continuar_lleva_a_obligatorio_pct": 99.9
+  }
+ },
+ "apdex_t_s": 0.2,
+ "E2": {
+  "v1": {
+   "1": {
+    "solicitudes": 2089,
+    "errores": 0,
+    "rps": 104.0,
+    "p50_ms": 1.8,
+    "p95_ms": 59.5,
+    "p99_ms": 66.8,
+    "apdex": 1.0,
+    "por_tipo": {
+     "ruta": {
+      "n": 180,
+      "apdex": 1.0,
+      "p50_ms": 13.5,
+      "p95_ms": 23.0,
+      "consultas_media": 87.9
+     },
+     "continuar": {
+      "n": 180,
+      "apdex": 1.0,
+      "p50_ms": 20.4,
+      "p95_ms": 32.5,
+      "consultas_media": 104.6
+     },
+     "completar": {
+      "n": 180,
+      "apdex": 1.0,
+      "p50_ms": 60.4,
+      "p95_ms": 69.4,
+      "consultas_media": 19.7
+     },
+     "catalogo": {
+      "n": 1549,
+      "apdex": 1.0,
+      "p50_ms": 1.6,
+      "p95_ms": 3.4,
+      "consultas_media": 2
+     }
+    }
+   },
+   "10": {
+    "solicitudes": 4233,
+    "errores": 0,
+    "rps": 201.2,
+    "p50_ms": 1.9,
+    "p95_ms": 132.7,
+    "p99_ms": 1151.3,
+    "apdex": 0.976,
+    "por_tipo": {
+     "ruta": {
+      "n": 364,
+      "apdex": 1.0,
+      "p50_ms": 13.8,
+      "p95_ms": 32.3,
+      "consultas_media": 85.8
+     },
+     "continuar": {
+      "n": 364,
+      "apdex": 1.0,
+      "p50_ms": 22.5,
+      "p95_ms": 40.4,
+      "consultas_media": 102.5
+     },
+     "completar": {
+      "n": 364,
+      "apdex": 0.72,
+      "p50_ms": 169.3,
+      "p95_ms": 2651.8,
+      "consultas_media": 19.7
+     },
+     "catalogo": {
+      "n": 3141,
+      "apdex": 1.0,
+      "p50_ms": 1.7,
+      "p95_ms": 3.8,
+      "consultas_media": 2
+     }
+    }
+   },
+   "25": {
+    "solicitudes": 3752,
+    "errores": 0,
+    "rps": 171.4,
+    "p50_ms": 2.4,
+    "p95_ms": 210.5,
+    "p99_ms": 3992.4,
+    "apdex": 0.958,
+    "por_tipo": {
+     "ruta": {
+      "n": 331,
+      "apdex": 0.988,
+      "p50_ms": 14.2,
+      "p95_ms": 127.0,
+      "consultas_media": 83.7
+     },
+     "continuar": {
+      "n": 331,
+      "apdex": 0.991,
+      "p50_ms": 23.1,
+      "p95_ms": 90.3,
+      "consultas_media": 99.9
+     },
+     "completar": {
+      "n": 331,
+      "apdex": 0.542,
+      "p50_ms": 253.2,
+      "p95_ms": 6469.4,
+      "consultas_media": 19.3
+     },
+     "catalogo": {
+      "n": 2759,
+      "apdex": 1.0,
+      "p50_ms": 1.9,
+      "p95_ms": 4.5,
+      "consultas_media": 2
+     }
+    }
+   },
+   "50": {
+    "solicitudes": 3458,
+    "errores": 0,
+    "rps": 137.9,
+    "p50_ms": 2.2,
+    "p95_ms": 594.3,
+    "p99_ms": 10994.7,
+    "apdex": 0.943,
+    "por_tipo": {
+     "ruta": {
+      "n": 324,
+      "apdex": 0.957,
+      "p50_ms": 15.2,
+      "p95_ms": 594.3,
+      "consultas_media": 85.1
+     },
+     "continuar": {
+      "n": 324,
+      "apdex": 0.998,
+      "p50_ms": 24.2,
+      "p95_ms": 98.5,
+      "consultas_media": 101.7
+     },
+     "completar": {
+      "n": 324,
+      "apdex": 0.437,
+      "p50_ms": 422.5,
+      "p95_ms": 17912.0,
+      "consultas_media": 19.5
+     },
+     "catalogo": {
+      "n": 2486,
+      "apdex": 1.0,
+      "p50_ms": 1.8,
+      "p95_ms": 4.4,
+      "consultas_media": 2
+     }
+    }
+   }
+  },
+  "v2": {
+   "1": {
+    "solicitudes": 3697,
+    "errores": 0,
+    "rps": 184.8,
+    "p50_ms": 0.7,
+    "p95_ms": 44.7,
+    "p99_ms": 88.9,
+    "apdex": 1.0,
+    "por_tipo": {
+     "ruta": {
+      "n": 313,
+      "apdex": 1.0,
+      "p50_ms": 0.8,
+      "p95_ms": 2.3,
+      "consultas_media": 3
+     },
+     "continuar": {
+      "n": 313,
+      "apdex": 1.0,
+      "p50_ms": 0.6,
+      "p95_ms": 2.4,
+      "consultas_media": 1.1
+     },
+     "completar": {
+      "n": 313,
+      "apdex": 0.997,
+      "p50_ms": 45.8,
+      "p95_ms": 105.1,
+      "consultas_media": 5
+     },
+     "catalogo": {
+      "n": 2758,
+      "apdex": 1.0,
+      "p50_ms": 0.6,
+      "p95_ms": 1.8,
+      "consultas_media": 1.0
+     }
+    }
+   },
+   "10": {
+    "solicitudes": 4626,
+    "errores": 0,
+    "rps": 223.8,
+    "p50_ms": 0.7,
+    "p95_ms": 78.9,
+    "p99_ms": 1360.8,
+    "apdex": 0.981,
+    "por_tipo": {
+     "ruta": {
+      "n": 394,
+      "apdex": 1.0,
+      "p50_ms": 0.8,
+      "p95_ms": 2.8,
+      "consultas_media": 3
+     },
+     "continuar": {
+      "n": 394,
+      "apdex": 1.0,
+      "p50_ms": 0.5,
+      "p95_ms": 1.5,
+      "consultas_media": 1.0
+     },
+     "completar": {
+      "n": 394,
+      "apdex": 0.777,
+      "p50_ms": 92.0,
+      "p95_ms": 2592.8,
+      "consultas_media": 5
+     },
+     "catalogo": {
+      "n": 3444,
+      "apdex": 1.0,
+      "p50_ms": 0.6,
+      "p95_ms": 1.5,
+      "consultas_media": 1
+     }
+    }
+   },
+   "25": {
+    "solicitudes": 2846,
+    "errores": 0,
+    "rps": 126.7,
+    "p50_ms": 0.7,
+    "p95_ms": 275.0,
+    "p99_ms": 5489.5,
+    "apdex": 0.953,
+    "por_tipo": {
+     "ruta": {
+      "n": 262,
+      "apdex": 0.992,
+      "p50_ms": 0.9,
+      "p95_ms": 28.2,
+      "consultas_media": 3.0
+     },
+     "continuar": {
+      "n": 262,
+      "apdex": 1.0,
+      "p50_ms": 0.6,
+      "p95_ms": 3.1,
+      "consultas_media": 1.0
+     },
+     "completar": {
+      "n": 262,
+      "apdex": 0.494,
+      "p50_ms": 304.2,
+      "p95_ms": 9614.8,
+      "consultas_media": 5
+     },
+     "catalogo": {
+      "n": 2060,
+      "apdex": 1.0,
+      "p50_ms": 0.7,
+      "p95_ms": 1.8,
+      "consultas_media": 1
+     }
+    }
+   },
+   "50": {
+    "solicitudes": 4859,
+    "errores": 0,
+    "rps": 208.3,
+    "p50_ms": 0.7,
+    "p95_ms": 156.3,
+    "p99_ms": 7347.0,
+    "apdex": 0.96,
+    "por_tipo": {
+     "ruta": {
+      "n": 434,
+      "apdex": 0.98,
+      "p50_ms": 0.9,
+      "p95_ms": 40.0,
+      "consultas_media": 2.9
+     },
+     "continuar": {
+      "n": 434,
+      "apdex": 1.0,
+      "p50_ms": 0.6,
+      "p95_ms": 3.6,
+      "consultas_media": 1
+     },
+     "completar": {
+      "n": 434,
+      "apdex": 0.575,
+      "p50_ms": 180.9,
+      "p95_ms": 13030.5,
+      "consultas_media": 5
+     },
+     "catalogo": {
+      "n": 3557,
+      "apdex": 1.0,
+      "p50_ms": 0.7,
+      "p95_ms": 2.0,
+      "consultas_media": 1
+     }
+    }
+   }
+  },
+  "v3": {
+   "1": {
+    "solicitudes": 27653,
+    "errores": 0,
+    "rps": 1382.6,
+    "p50_ms": 0.6,
+    "p95_ms": 1.5,
+    "p99_ms": 2.8,
+    "apdex": 1.0,
+    "por_tipo": {
+     "ruta": {
+      "n": 2294,
+      "apdex": 1.0,
+      "p50_ms": 0.8,
+      "p95_ms": 2.0,
+      "consultas_media": 3.0
+     },
+     "continuar": {
+      "n": 2294,
+      "apdex": 1.0,
+      "p50_ms": 0.5,
+      "p95_ms": 1.4,
+      "consultas_media": 1.0
+     },
+     "completar": {
+      "n": 2294,
+      "apdex": 1.0,
+      "p50_ms": 0.5,
+      "p95_ms": 1.2,
+      "consultas_media": 1.0
+     },
+     "catalogo": {
+      "n": 20771,
+      "apdex": 1.0,
+      "p50_ms": 0.5,
+      "p95_ms": 1.4,
+      "consultas_media": 1.0
+     }
+    }
+   },
+   "10": {
+    "solicitudes": 25560,
+    "errores": 0,
+    "rps": 1277.6,
+    "p50_ms": 8.2,
+    "p95_ms": 13.0,
+    "p99_ms": 16.1,
+    "apdex": 1.0,
+    "por_tipo": {
+     "ruta": {
+      "n": 2141,
+      "apdex": 1.0,
+      "p50_ms": 5.7,
+      "p95_ms": 9.6,
+      "consultas_media": 3.0
+     },
+     "continuar": {
+      "n": 2141,
+      "apdex": 1.0,
+      "p50_ms": 1.7,
+      "p95_ms": 4.0,
+      "consultas_media": 1
+     },
+     "completar": {
+      "n": 2141,
+      "apdex": 1.0,
+      "p50_ms": 1.6,
+      "p95_ms": 3.9,
+      "consultas_media": 1.0
+     },
+     "catalogo": {
+      "n": 19137,
+      "apdex": 1.0,
+      "p50_ms": 9.0,
+      "p95_ms": 13.4,
+      "consultas_media": 1
+     }
+    }
+   },
+   "25": {
+    "solicitudes": 22336,
+    "errores": 0,
+    "rps": 1115.8,
+    "p50_ms": 24.2,
+    "p95_ms": 36.5,
+    "p99_ms": 46.8,
+    "apdex": 1.0,
+    "por_tipo": {
+     "ruta": {
+      "n": 1892,
+      "apdex": 0.999,
+      "p50_ms": 14.6,
+      "p95_ms": 25.1,
+      "consultas_media": 3.0
+     },
+     "continuar": {
+      "n": 1892,
+      "apdex": 1.0,
+      "p50_ms": 3.7,
+      "p95_ms": 9.3,
+      "consultas_media": 1.0
+     },
+     "completar": {
+      "n": 1892,
+      "apdex": 1.0,
+      "p50_ms": 3.6,
+      "p95_ms": 9.2,
+      "consultas_media": 1.0
+     },
+     "catalogo": {
+      "n": 16660,
+      "apdex": 1.0,
+      "p50_ms": 26.3,
+      "p95_ms": 38.1,
+      "consultas_media": 1
+     }
+    }
+   },
+   "50": {
+    "solicitudes": 19855,
+    "errores": 0,
+    "rps": 990.7,
+    "p50_ms": 55.5,
+    "p95_ms": 80.3,
+    "p99_ms": 96.0,
+    "apdex": 1.0,
+    "por_tipo": {
+     "ruta": {
+      "n": 1699,
+      "apdex": 0.995,
+      "p50_ms": 32.1,
+      "p95_ms": 53.7,
+      "consultas_media": 3.0
+     },
+     "continuar": {
+      "n": 1699,
+      "apdex": 1.0,
+      "p50_ms": 8.8,
+      "p95_ms": 19.0,
+      "consultas_media": 1.0
+     },
+     "completar": {
+      "n": 1699,
+      "apdex": 1.0,
+      "p50_ms": 8.6,
+      "p95_ms": 18.7,
+      "consultas_media": 1.0
+     },
+     "catalogo": {
+      "n": 14758,
+      "apdex": 1.0,
+      "p50_ms": 60.5,
+      "p95_ms": 82.6,
+      "consultas_media": 1
+     }
+    }
+   }
+  }
+ },
+ "E3": {
+  "v1": {
+   "1": 9.55,
+   "10": 12.93,
+   "100": 20.55,
+   "500": 48.04,
+   "1000": 77.22,
+   "2500": 131.15
+  },
+  "v2": {
+   "1": 0.06,
+   "10": 0.08,
+   "100": 0.08,
+   "500": 0.07,
+   "1000": 0.14,
+   "2500": 0.07
+  }
+ }
+}

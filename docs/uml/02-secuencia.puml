@@ -1,0 +1,59 @@
+@startuml secuencia
+!include estilo.iuml
+title AulaNube Rutas · Secuencia de «Continuar» y «Marcar como completada»
+autonumber "<b>0."
+
+actor Colaborador as U
+participant "Vista\n«Command»" as V
+participant "API" as A
+participant "ServicioNavegacion" as S
+participant "Caché" as C
+participant "EstrategiaRuta\n«Strategy»" as E
+participant "Repositorio" as R
+participant "Curso\n«Composite»" as K
+participant "IteradorPendientes\n«Iterator»" as I
+participant "Publicador\n«Observer»" as P
+queue "Cola de\navance (v3)" as Q
+participant "Escritor\n(hilo)" as W
+database "Base del LMS" as DB
+
+U -> V : clic en «Continuar»
+V -> V : navegador.ejecutar(new Continuar())
+V -> A : GET /colaboradores/7/continuar
+A -> S : continuar(7)
+S -> C : obtener("c7:ruta:urgencia")
+alt la ruta está en caché
+  C --> S : plan
+else no está
+  S -> R : pendientes(7)
+  R -> DB : 2 consultas agrupadas
+  S -> E : planificar(pendientes, 30 min/día)
+  E --> S : orden por fecha límite efectiva
+  S -> C : guardar plan
+end
+S -> S : primer curso sin prerrequisitos pendientes
+S -> R : arbol(curso)  «en caché: el contenido casi no cambia»
+R --> S : Curso > Módulos > Lecciones
+S -> R : completadas(7, curso)  «1 consulta»
+S -> I : siguiente()
+I -> K : recorrer en orden, saltando lo completado
+I --> S : Lección 2.3
+S --> A : lección, anterior, siguiente, progreso
+A --> V : 200 (x ms, y consultas)
+V --> U : abre la lección
+
+== Al terminar la lección ==
+U -> V : «Marcar como completada y seguir»
+V -> A : POST /lecciones/2.3/completar
+A -> S : completar(7, 2.3)
+S -> R : registrar_avance
+R -> Q : encolar (v3: no espera el disco)
+S -> P : publicar(leccion.completada)
+P -> C : InvalidadorRuta: borrar "c7:*"
+S --> A : próxima pendiente: 2.4
+A --> V : 200
+V -> V : ejecutar(new IrALeccion(2.4))
+...cada 100 ms...
+W -> Q : tomar todo lo encolado
+W -> DB : INSERT del lote + una sola confirmación
+@enduml

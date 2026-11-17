@@ -1,0 +1,31 @@
+@startuml actividad
+!include estilo.iuml
+title AulaNube Rutas · Actividad: calcular la ruta por urgencia
+
+start
+:Leer cursos pendientes del colaborador
+(minutos que faltan, fecha límite, prerrequisitos)
+y sus minutos de estudio al día;
+:Calcular días de estudio de cada curso
+(minutos pendientes / minutos al día);
+:Ordenar los cursos topológicamente
+(un prerrequisito antes que el curso que lo pide);
+:Recorrer el orden al revés;
+repeat
+  :Tomar un curso C;
+  if (¿Algún curso D depende de C?) then (sí)
+    :fecha efectiva(C) =
+    mínimo(fecha de C, fecha efectiva(D) − días de D);
+  else (no)
+    :fecha efectiva(C) = fecha límite de C;
+  endif
+repeat while (¿quedan cursos?) is (sí)
+-> no;
+:Kahn con cola de prioridad:
+entre los cursos disponibles, el de menor fecha efectiva;
+:Simular el estudio día a día y estimar
+cuándo termina cada curso;
+:Marcar «a tiempo» o «tarde»
+y guardar el plan en la caché;
+stop
+@enduml

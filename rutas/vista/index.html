@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AulaNube Rutas</title>
+<style>
+  :root { --tinta:#16323a; --suave:#5b6b70; --linea:#d9d6cc; --fondo:#f5f3ee; --papel:#fff;
+          --verde:#0f766e; --verde-claro:#e3f1ef; --ambar:#b45309; --ambar-claro:#fdf2e2; --rojo:#b42318; --rojo-claro:#fdecea; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.5 "Segoe UI",system-ui,sans-serif; color:var(--tinta); background:var(--fondo); }
+  header { background:var(--tinta); color:#fff; padding:12px 24px; display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center; }
+  header h1 { font-size:18px; margin:0; } header h1 span { color:#7dd3c8; font-weight:500; }
+  header label { color:#b9c7ca; font-size:13px; display:flex; gap:6px; align-items:center; }
+  header select { font:inherit; padding:4px 6px; border-radius:6px; border:0; }
+  .chip-version { background:#d97706; color:#fff; border-radius:99px; padding:2px 10px; font-size:12px; font-weight:700; }
+  nav { display:flex; gap:4px; padding:0 24px; background:#fff; border-bottom:1px solid var(--linea); }
+  nav button { border:0; background:none; padding:12px 14px; font:inherit; color:var(--suave); cursor:pointer; border-bottom:3px solid transparent; }
+  nav button.activa { color:var(--tinta); border-bottom-color:var(--verde); font-weight:600; }
+  nav .atras { margin-left:auto; color:var(--verde); }
+  nav .atras:disabled { color:#bbb; cursor:default; }
+  main { max-width:1150px; margin:0 auto; padding:20px 24px 60px; }
+  section { background:var(--papel); border:1px solid var(--linea); border-radius:10px; padding:18px 20px; margin-bottom:18px; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.8px; color:var(--suave); margin:0 0 12px; }
+  .resumen { display:flex; flex-wrap:wrap; gap:18px; align-items:center; margin-bottom:14px; }
+  .kpi b { display:block; font-size:24px; } .kpi { font-size:12px; color:var(--suave); }
+  .continuar { margin-left:auto; background:var(--verde); color:#fff; border:0; border-radius:8px; padding:12px 22px; font:inherit; font-size:16px; font-weight:700; cursor:pointer; }
+  .ruta { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .ruta li { display:grid; grid-template-columns:34px 1fr auto; gap:12px; align-items:center; padding:10px 12px; border:1px solid var(--linea); border-radius:8px; background:var(--fondo); }
+  .ruta li.tarde { background:var(--rojo-claro); border-color:#f1b3ac; }
+  .ruta li.bloqueado { opacity:.75; }
+  .num { width:30px; height:30px; border-radius:50%; background:var(--verde); color:#fff; display:grid; place-items:center; font-weight:700; }
+  .tarde .num { background:var(--rojo); }
+  .tit { font-weight:600; } .det { font-size:12px; color:var(--suave); }
+  .chip { font-size:11px; padding:2px 8px; border-radius:99px; background:var(--verde-claro); color:var(--verde); font-weight:600; margin-left:6px; }
+  .chip.vencimiento { background:var(--ambar-claro); color:var(--ambar); } .chip.voluntario { background:#eee; color:var(--suave); }
+  .estado { font-size:12px; font-weight:700; text-align:right; } .estado.ok { color:var(--verde); } .estado.mal { color:var(--rojo); }
+  .lector { display:grid; grid-template-columns:280px 1fr; gap:18px; }
+  @media (max-width:800px) { .lector { grid-template-columns:1fr; } }
+  .temario h3 { font-size:13px; margin:10px 0 4px; } .temario ul { list-style:none; margin:0; padding:0; }
+  .temario li { padding:4px 8px; border-radius:6px; cursor:pointer; font-size:13px; }
+  .temario li:hover { background:var(--fondo); } .temario li.actual { background:var(--verde-claro); font-weight:700; }
+  .temario li.hecha::before { content:"✓ "; color:var(--verde); } .temario li:not(.hecha)::before { content:"○ "; color:var(--suave); }
+  .contenido h2 { font-size:22px; text-transform:none; letter-spacing:0; color:var(--tinta); }
+  .barra { height:10px; background:#e6e3da; border-radius:99px; overflow:hidden; margin:8px 0 16px; } .barra i { display:block; height:100%; background:var(--verde); }
+  .acciones { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+  .acciones button, .catalogo button { font:inherit; padding:9px 14px; border-radius:8px; border:1px solid var(--linea); background:#fff; cursor:pointer; }
+  .acciones .principal { background:var(--verde); color:#fff; border-color:var(--verde); font-weight:700; }
+  .acciones button:disabled { opacity:.4; cursor:default; }
+  .simulado { background:var(--fondo); border:1px dashed var(--linea); border-radius:8px; padding:30px; text-align:center; color:var(--suave); }
+  .filtros { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; } .filtros input, .filtros select { font:inherit; padding:7px 9px; border:1px solid var(--linea); border-radius:6px; }
+  table { width:100%; border-collapse:collapse; } th, td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--linea); font-size:13px; } th { color:var(--suave); font-weight:600; }
+  footer { position:fixed; bottom:0; left:0; right:0; background:var(--tinta); color:#cfe; font-size:12px; padding:6px 24px; display:flex; gap:18px; }
+  footer b { color:#fff; }
+</style>
+</head>
+<body>
+<header>
+  <h1>AulaNube <span>Rutas</span></h1>
+  <span class="chip-version" id="version">…</span>
+  <label>Colaborador <select id="colaborador"></select></label>
+  <label>Estrategia <select id="estrategia">
+    <option value="">(la de esta versión)</option>
+    <option value="alfabetico">Orden alfabético</option>
+    <option value="fecha">Primero lo que vence</option>
+    <option value="urgencia">Urgencia con prerrequisitos</option>
+  </select></label>
+</header>
+<nav>
+  <button id="t-ruta" class="activa">Mi ruta</button>
+  <button id="t-catalogo">Catálogo</button>
+  <button id="atras" class="atras" disabled>← Atrás</button>
+</nav>
+<main id="vista"></main>
+<footer id="medicion">Sin solicitudes todavía.</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => new Intl.NumberFormat('es-CO').format(n);
+const fecha = (iso) => new Date(iso + 'T12:00').toLocaleDateString('es-CO', { day:'numeric', month:'short' });
+const estado = { colaborador: 1, estrategia: '', catalogo: { categoria:'', q:'', paginas:[], siguiente:null, total:0 } };
+
+async function api(ruta, opciones) {
+  const r = await fetch(ruta, opciones);
+  const datos = await r.json();
+  const m = datos._medicion;
+  if (m) $('medicion').innerHTML = `Última solicitud: <b>${ruta.split('?')[0]}</b> · <b>${m.ms} ms</b> · <b>${m.consultas}</b> consultas SQL · versión <b>${m.version}</b>`;
+  return datos;
+}
+
+/* ---------------------------------------------------------------
+   Patrón Command: cada acción de navegación es un objeto con
+   ejecutar(). El Navegador (invocador) guarda el historial para
+   «Atrás» en el navegador, no en el servidor (servidor sin estado).
+--------------------------------------------------------------- */
+class Comando { async ejecutar() {} }
+class VerRuta extends Comando { async ejecutar() { pestana('ruta'); pintarRuta(await api(`/api/colaboradores/${estado.colaborador}/ruta?estrategia=${estado.estrategia}`)); } }
+class Continuar extends Comando { async ejecutar() { pestana(''); pintarLeccion(await api(`/api/colaboradores/${estado.colaborador}/continuar`)); } }
+class IrALeccion extends Comando {
+  constructor(id) { super(); this.id = id; }
+  async ejecutar() { pestana(''); pintarLeccion(await api(`/api/colaboradores/${estado.colaborador}/lecciones/${this.id}`)); }
+}
+class CompletarYSeguir extends Comando {
+  constructor(id) { super(); this.id = id; }
+  async ejecutar() {
+    const d = await api(`/api/colaboradores/${estado.colaborador}/lecciones/${this.id}/completar`, { method:'POST' });
+    if (d.proxima_pendiente) return new IrALeccion(d.proxima_pendiente).ejecutar();
+    return new Continuar().ejecutar();   // curso terminado: el siguiente de la ruta
+  }
+}
+class VerCatalogo extends Comando { async ejecutar() { pestana('catalogo'); pintarCatalogo(); } }
+
+const navegador = {
+  historial: [], actual: null,
+  async ejecutar(cmd) { if (this.actual) this.historial.push(this.actual); this.actual = cmd; $('atras').disabled = !this.historial.length; await cmd.ejecutar(); },
+  async atras() { const previo = this.historial.pop(); if (!previo) return; this.actual = previo; $('atras').disabled = !this.historial.length; await previo.ejecutar(); },
+};
+
+function pestana(nombre) { $('t-ruta').classList.toggle('activa', nombre === 'ruta'); $('t-catalogo').classList.toggle('activa', nombre === 'catalogo'); }
+
+function pintarRuta(d) {
+  const r = d.resumen;
+  $('vista').innerHTML = `<section>
+    <h2>Ruta de ${d.colaborador.nombres} · ${d.colaborador.cargo} · ${d.colaborador.empresa}</h2>
+    <div class="resumen">
+      <div class="kpi"><b>${r.a_tiempo} / ${r.obligatorios}</b>obligatorios a tiempo</div>
+      <div class="kpi"><b>${d.colaborador.minutos_dia} min</b>de estudio al día</div>
+      <div class="kpi"><b>${d.estrategia}</b>estrategia</div>
+      <button class="continuar" id="btn-continuar">Continuar ▶</button>
+    </div>
+    <ol class="ruta">${d.items.map(i => `<li class="${i.motivo !== 'voluntario' && !i.a_tiempo ? 'tarde' : ''} ${i.bloqueado_por.length ? 'bloqueado' : ''}">
+      <span class="num">${i.orden}</span>
+      <div><div class="tit">${i.titulo}<span class="chip ${i.motivo}">${i.motivo}</span></div>
+        <div class="det">Vence ${fecha(i.fecha_limite)} · termina aprox. ${fecha(i.termina_estimado)} · faltan ${i.minutos_pendientes} min${i.bloqueado_por.length ? ' · requiere ' + i.bloqueado_por.join(', ') : ''}</div></div>
+      <div class="estado ${i.motivo === 'voluntario' || i.a_tiempo ? 'ok' : 'mal'}">${i.motivo === 'voluntario' ? 'opcional' : i.a_tiempo ? 'a tiempo' : 'tarde'}</div>
+    </li>`).join('')}</ol></section>`;
+  $('btn-continuar').onclick = () => navegador.ejecutar(new Continuar());
+}
+
+function pintarLeccion(d) {
+  if (d.terminado) { $('vista').innerHTML = '<section><h2>¡Ruta completa!</h2></section>'; return; }
+  const l = d.leccion;
+  $('vista').innerHTML = `<div class="lector">
+    <section class="temario"><h2>${d.curso.titulo}</h2><div class="barra"><i style="width:${d.progreso}%"></i></div>
+      ${d.curso.modulos.map(m => `<h3>${m.titulo}</h3><ul>${m.lecciones.map(x => `<li data-id="${x.id}" class="${x.completada ? 'hecha' : ''} ${x.id === l.id ? 'actual' : ''}">${x.titulo}</li>`).join('')}</ul>`).join('')}
+    </section>
+    <section class="contenido"><h2>${l.titulo}</h2>
+      <div class="det">${d.curso.titulo} · ${l.duracion_min} min · progreso del curso ${d.progreso} % · faltan ${d.minutos_pendientes} min</div>
+      <div class="simulado" style="margin-top:14px">Contenido de la lección (video, lectura o actividad)</div>
+      <div class="acciones">
+        <button id="b-ant" ${d.anterior ? '' : 'disabled'}>← Anterior</button>
+        <button id="b-comp" class="principal">${l.completada ? 'Ir a la siguiente pendiente' : 'Marcar como completada y seguir'}</button>
+        <button id="b-sig" ${d.siguiente ? '' : 'disabled'}>Siguiente →</button>
+        <button id="b-ruta">Ver mi ruta</button>
+      </div></section></div>`;
+  document.querySelectorAll('.temario li').forEach(li => li.onclick = () => navegador.ejecutar(new IrALeccion(+li.dataset.id)));
+  $('b-ant').onclick = () => navegador.ejecutar(new IrALeccion(d.anterior));
+  $('b-sig').onclick = () => navegador.ejecutar(new IrALeccion(d.siguiente));
+  $('b-comp').onclick = () => navegador.ejecutar(l.completada ? (d.proxima_pendiente ? new IrALeccion(d.proxima_pendiente) : new Continuar()) : new CompletarYSeguir(l.id));
+  $('b-ruta').onclick = () => navegador.ejecutar(new VerRuta());
+}
+
+async function pintarCatalogo(mas = false) {
+  const c = estado.catalogo;
+  if (!mas) { c.paginas = []; c.siguiente = null; }
+  const v2 = $('version').textContent !== 'v1';  // v2 y v3 paginan por llave
+  let url = `/api/catalogo?categoria=${encodeURIComponent(c.categoria)}&q=${encodeURIComponent(c.q)}`;
+  if (mas && c.siguiente) url += v2 ? `&despues=${encodeURIComponent(c.siguiente)}` : `&pagina=${c.siguiente}`;
+  const d = await api(url);
+  c.paginas.push(...d.cursos); c.siguiente = d.siguiente; c.total = d.total;
+  $('vista').innerHTML = `<section class="catalogo"><h2>Catálogo · ${fmt(c.total)} cursos</h2>
+    <div class="filtros">
+      <select id="f-cat"><option value="">Todas las categorías</option>${['Calidad','Cumplimiento','Emergencias','Finanzas','Liderazgo','Ofimática','Salud','Seguridad y salud en el trabajo','Servicio al cliente','Tecnología'].map(x => `<option ${x === c.categoria ? 'selected' : ''}>${x}</option>`).join('')}</select>
+      <input id="f-q" placeholder="Buscar por título" value="${c.q}"><button id="f-ir">Buscar</button>
+    </div>
+    <table><thead><tr><th>#</th><th>Curso</th><th>Categoría</th><th>Duración</th></tr></thead>
+    <tbody>${c.paginas.map((k, i) => `<tr><td>${i + 1}</td><td>${k.titulo}</td><td>${k.categoria}</td><td>${k.duracion_min} min</td></tr>`).join('')}</tbody></table>
+    <p>${c.siguiente ? '<button id="f-mas">Cargar 20 más</button>' : 'Fin de los resultados.'}</p></section>`;
+  $('f-ir').onclick = () => { c.categoria = $('f-cat').value; c.q = $('f-q').value; pintarCatalogo(); };
+  if ($('f-mas')) $('f-mas').onclick = () => pintarCatalogo(true);
+}
+
+$('t-ruta').onclick = () => navegador.ejecutar(new VerRuta());
+$('t-catalogo').onclick = () => navegador.ejecutar(new VerCatalogo());
+$('atras').onclick = () => navegador.atras();
+$('colaborador').onchange = (e) => { estado.colaborador = +e.target.value; navegador.ejecutar(new VerRuta()); };
+$('estrategia').onchange = (e) => { estado.estrategia = e.target.value; navegador.ejecutar(new VerRuta()); };
+
+(async () => {
+  const e = await (await fetch('/api/estado')).json();
+  $('version').textContent = e.version;
+  const lista = (await (await fetch('/api/colaboradores')).json()).colaboradores;
+  $('colaborador').innerHTML = lista.map(c => `<option value="${c.id}">${c.nombres} · ${c.cargo}</option>`).join('');
+  navegador.ejecutar(new VerRuta());
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+E2 v1 1 {'solicitudes': 2089, 'errores': 0, 'rps': 104.0, 'p50_ms': 1.8, 'p95_ms': 59.5, 'p99_ms': 66.8, 'apdex': 1.0}
+E2 v1 10 {'solicitudes': 4233, 'errores': 0, 'rps': 201.2, 'p50_ms': 1.9, 'p95_ms': 132.7, 'p99_ms': 1151.3, 'apdex': 0.976}
+E2 v1 25 {'solicitudes': 3752, 'errores': 0, 'rps': 171.4, 'p50_ms': 2.4, 'p95_ms': 210.5, 'p99_ms': 3992.4, 'apdex': 0.958}
+E2 v1 50 {'solicitudes': 3458, 'errores': 0, 'rps': 137.9, 'p50_ms': 2.2, 'p95_ms': 594.3, 'p99_ms': 10994.7, 'apdex': 0.943}
+E2 v2 1 {'solicitudes': 3697, 'errores': 0, 'rps': 184.8, 'p50_ms': 0.7, 'p95_ms': 44.7, 'p99_ms': 88.9, 'apdex': 1.0}
+E2 v2 10 {'solicitudes': 4626, 'errores': 0, 'rps': 223.8, 'p50_ms': 0.7, 'p95_ms': 78.9, 'p99_ms': 1360.8, 'apdex': 0.981}
+E2 v2 25 {'solicitudes': 2846, 'errores': 0, 'rps': 126.7, 'p50_ms': 0.7, 'p95_ms': 275.0, 'p99_ms': 5489.5, 'apdex': 0.953}
+E2 v2 50 {'solicitudes': 4859, 'errores': 0, 'rps': 208.3, 'p50_ms': 0.7, 'p95_ms': 156.3, 'p99_ms': 7347.0, 'apdex': 0.96}
+E2 v3 1 {'solicitudes': 27653, 'errores': 0, 'rps': 1382.6, 'p50_ms': 0.6, 'p95_ms': 1.5, 'p99_ms': 2.8, 'apdex': 1.0}
+E2 v3 10 {'solicitudes': 25560, 'errores': 0, 'rps': 1277.6, 'p50_ms': 8.2, 'p95_ms': 13.0, 'p99_ms': 16.1, 'apdex': 1.0}
+E2 v3 25 {'solicitudes': 22336, 'errores': 0, 'rps': 1115.8, 'p50_ms': 24.2, 'p95_ms': 36.5, 'p99_ms': 46.8, 'apdex': 1.0}
+E2 v3 50 {'solicitudes': 19855, 'errores': 0, 'rps': 990.7, 'p50_ms': 55.5, 'p95_ms': 80.3, 'p99_ms': 96.0, 'apdex': 1.0}
+Resultados en D:\Augusto\Universidad\Semestre 8\Arquitectura de Software\Unidad 3\aulanube-rutas\docs\resultados\resultados.json

@@ -1,0 +1,15 @@
+E2 v1 1 {'solicitudes': 2349, 'errores': 0, 'rps': 117.1, 'p50_ms': 1.7, 'p95_ms': 50.3, 'p99_ms': 61.5, 'apdex': 1.0}
+E2 v1 10 {'solicitudes': 3962, 'errores': 0, 'rps': 188.4, 'p50_ms': 1.8, 'p95_ms': 126.9, 'p99_ms': 1424.4, 'apdex': 0.975}
+E2 v1 25 {'solicitudes': 4125, 'errores': 0, 'rps': 191.1, 'p50_ms': 1.8, 'p95_ms': 192.9, 'p99_ms': 3978.8, 'apdex': 0.96}
+E2 v1 50 {'solicitudes': 3722, 'errores': 0, 'rps': 142.6, 'p50_ms': 1.9, 'p95_ms': 1028.2, 'p99_ms': 8978.9, 'apdex': 0.938}
+E2 v2 1 {'solicitudes': 3571, 'errores': 0, 'rps': 178.4, 'p50_ms': 0.7, 'p95_ms': 48.8, 'p99_ms': 95.8, 'apdex': 1.0}
+E2 v2 10 {'solicitudes': 2227, 'errores': 0, 'rps': 106.2, 'p50_ms': 0.8, 'p95_ms': 265.3, 'p99_ms': 2633.8, 'apdex': 0.954}
+E2 v2 25 {'solicitudes': 2839, 'errores': 0, 'rps': 129.1, 'p50_ms': 0.8, 'p95_ms': 137.4, 'p99_ms': 5597.2, 'apdex': 0.965}
+E2 v2 50 {'solicitudes': 3822, 'errores': 0, 'rps': 153.3, 'p50_ms': 0.7, 'p95_ms': 520.1, 'p99_ms': 10053.1, 'apdex': 0.948}
+E3 página 1 9.55 0.06
+E3 página 10 12.93 0.08
+E3 página 100 20.55 0.08
+E3 página 500 48.04 0.07
+E3 página 1000 77.22 0.14
+E3 página 2500 131.15 0.07
+Resultados en D:\Augusto\Universidad\Semestre 8\Arquitectura de Software\Unidad 3\aulanube-rutas\docs\resultados\resultados.json

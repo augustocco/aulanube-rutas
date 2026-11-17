@@ -1,0 +1,14 @@
+TÍTULO (máximo 100 caracteres)
+AulaNube Rutas: estrategias de navegación y optimización de arquitectura | Arquitectura de Software U3
+
+VISIBILIDAD: No listado
+
+DESCRIPCIÓN
+Actividad 6 «Navegando mareas: Estrategias de navegación en la arquitectura de software» del curso Arquitectura de Software (Unidad 3), Tecnológica del Oriente.
+
+AulaNube Rutas le arma a cada colaborador su ruta de formación por urgencia (prerrequisitos, cierre de campaña y vencimiento de certificados) y lo lleva con un clic a su siguiente lección. El video presenta el problema de navegación, los diagramas UML (componentes, clases, secuencia y actividad), los patrones Strategy, Composite, Iterator, Command y Observer, una demostración del prototipo y la evaluación en tres iteraciones con pruebas de carga, en la que el cuello de botella se desplazó de las lecturas a la escritura.
+
+Repositorio: https://github.com/augustocco/aulanube-rutas
+Autor: Augusto César Cañola Ortiz · Docente: Ing. Leydi Johana Polo Amador
+
+#ArquitecturaDeSoftware #PatronesDeDiseño #UML #Rendimiento

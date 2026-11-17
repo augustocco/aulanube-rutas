@@ -1,0 +1,10 @@
+__pycache__/
+registros/
+*.pyc
+bitacora-eventos.jsonl
+bandeja-salida.txt
+~$*
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

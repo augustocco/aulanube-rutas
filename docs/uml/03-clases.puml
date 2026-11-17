@@ -1,0 +1,136 @@
+@startuml clases
+!include estilo.iuml
+title AulaNube Rutas · Diagrama de clases
+hide empty members
+
+package "Contenido «Composite» + «Iterator»" {
+  abstract class NodoContenido {
+    titulo
+    {abstract} lecciones(): Iterator
+    minutos_pendientes(completadas)
+  }
+  class Leccion {
+    id
+    duracion_min
+  }
+  abstract class Compuesto {
+    hijos
+    agregar(hijo)
+  }
+  class Curso
+  class Modulo
+  class IteradorPendientes {
+    completadas
+    siguiente(): Leccion
+  }
+  NodoContenido <|-- Leccion
+  NodoContenido <|-- Compuesto
+  Compuesto <|-- Curso
+  Compuesto <|-- Modulo
+  Compuesto o-- "*" NodoContenido : hijos
+  IteradorPendientes --> NodoContenido : recorre
+}
+
+package "Ruta «Strategy»" {
+  abstract class EstrategiaRuta {
+    {abstract} preferencia(cursos, min_dia)
+  }
+  class OrdenAlfabetico
+  class PorFechaLimite
+  class PorUrgencia {
+    fecha límite efectiva
+    orden topológico
+  }
+  class CursoPendiente {
+    codigo
+    minutos_pendientes
+    vence_en_dias
+    prerrequisitos
+  }
+  class ItemRuta {
+    orden
+    termina_dia
+    a_tiempo
+    bloqueado_por
+  }
+  EstrategiaRuta <|-- OrdenAlfabetico
+  EstrategiaRuta <|-- PorFechaLimite
+  EstrategiaRuta <|-- PorUrgencia
+  EstrategiaRuta ..> CursoPendiente
+  EstrategiaRuta ..> ItemRuta : planificar()
+}
+
+package "Servicio y eventos «Observer»" {
+  class ServicioNavegacion {
+    ruta(colaborador, estrategia)
+    continuar(colaborador)
+    completar(colaborador, leccion)
+  }
+  class Publicador {
+    suscribir(o)
+    publicar(evento, datos)
+  }
+  interface Observador {
+    notificar(evento, datos)
+  }
+  class InvalidadorRuta
+  class Bitacora
+  Publicador o-- "*" Observador
+  Observador <|.. InvalidadorRuta
+  Observador <|.. Bitacora
+}
+
+package "Datos" {
+  abstract class Repositorio {
+    pendientes(colaborador)
+    arbol(curso)
+    completadas(colaborador, curso)
+    catalogo(filtros, cursor)
+  }
+  class RepositorioIngenuo <<v1>> {
+    N+1 consultas
+    OFFSET
+  }
+  class RepositorioOptimizado <<v2>> {
+    consultas agrupadas
+    keyset + índices
+  }
+  class Cache <<Cache-Aside>> {
+    obtener(clave, cargar)
+    borrar_prefijo(p)
+  }
+  class RepositorioAsincrono <<v3>> {
+    cola de avance
+    hilo escritor por lotes
+    lecturas + lo encolado
+  }
+  Repositorio <|-- RepositorioIngenuo
+  Repositorio <|-- RepositorioOptimizado
+  RepositorioOptimizado <|-- RepositorioAsincrono
+  RepositorioOptimizado --> Cache
+}
+
+package "Vista (JavaScript) «Command»" {
+  abstract class Comando {
+    ejecutar()
+  }
+  class Continuar
+  class IrALeccion
+  class CompletarYSeguir
+  class Navegador {
+    historial
+    ejecutar(cmd)
+    atras()
+  }
+  Comando <|-- Continuar
+  Comando <|-- IrALeccion
+  Comando <|-- CompletarYSeguir
+  Navegador o-- "*" Comando
+}
+
+ServicioNavegacion --> EstrategiaRuta
+ServicioNavegacion --> Repositorio
+ServicioNavegacion --> IteradorPendientes
+ServicioNavegacion --> Publicador
+InvalidadorRuta --> Cache
+@enduml
