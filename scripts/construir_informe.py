@@ -26,7 +26,7 @@ UML = RAIZ / "docs" / "uml"
 RES = RAIZ / "docs" / "resultados"
 CAP = RAIZ / "docs" / "capturas"
 
-VIDEO = sys.argv[1] if len(sys.argv) > 1 else "[pendiente: enlace del video en YouTube, no listado]"
+VIDEO = sys.argv[1] if len(sys.argv) > 1 else ""
 REPO = "https://github.com/augustocco/aulanube-rutas"
 
 
@@ -70,7 +70,7 @@ TITULO = ("AulaNube Rutas: estrategias de navegación optimizadas para las rutas
           "de la plataforma de CapacitaPro S.A.S.")
 poner_texto(P[4], TITULO)
 poner_texto(P[11], "Noviembre de 2026")
-poner_texto(P[13], f"Video de presentación: {VIDEO} · Repositorio: {REPO}")
+poner_texto(P[13], f"Video de presentación: {VIDEO} · Repositorio: {REPO}" if VIDEO else f"Repositorio: {REPO}")
 poner_texto(P[15], (
     "Este informe cierra el caso de CapacitaPro S.A.S. de las unidades 1 y 2 con un problema de navegación: el "
     "colaborador entra a la plataforma, ve una lista alfabética de cursos y no sabe cuál hacer primero, mientras se "

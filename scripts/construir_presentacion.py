@@ -27,7 +27,7 @@ SALIDA = RAIZ / "docs" / "presentacion" / "Presentacion-AulaNube-Rutas.pptx"
 GUION = RAIZ / "docs" / "presentacion" / "Guion-video-AulaNube-Rutas.docx"
 R = json.loads((RAIZ / "docs" / "resultados" / "resultados.json").read_text(encoding="utf-8"))
 UML, RES, CAP = RAIZ / "docs" / "uml", RAIZ / "docs" / "resultados", RAIZ / "docs" / "capturas"
-VIDEO = sys.argv[1] if len(sys.argv) > 1 else "youtu.be/(pendiente)"
+VIDEO = sys.argv[1] if len(sys.argv) > 1 else ""
 
 
 def n(x, d=1):
@@ -185,26 +185,39 @@ BLOQUES = [
      "«Continuar» y me lleva directo a la lección 3.1 de la inducción. Marco como completada y sigo: pasa a la 3.2. "
      "Vuelvo a «Mi ruta» y los minutos pendientes ya bajaron. Uso «Atrás», que es el historial de comandos. Por último, "
      "en el catálogo doy «Cargar 20 más» varias veces y cada página tarda lo mismo."),
-    ("9:40 – 10:30", "10 · Ruta", "Señalar la barra gris y la verde; luego la gráfica derecha.",
-     f"Con los 2.000 colaboradores de prueba, la ruta por urgencia subió los cursos obligatorios a tiempo de "
-     f"{n(A['a_tiempo_pct'], 0)} % a {n(U['a_tiempo_pct'], 0)} %, y «Continuar» llevó a un curso obligatorio en casi el "
-     "cien por ciento de los casos. La gráfica derecha muestra por qué no basta con «lo que vence primero»: en los "
-     f"reentrenamientos con un curso previo pendiente, esa estrategia llega a {n(F['vencimientos_con_prerrequisito_a_tiempo_pct'], 0)} % "
-     f"y la urgencia a {n(U['vencimientos_con_prerrequisito_a_tiempo_pct'], 0)} %."),
-    ("10:30 – 11:40", "11 · Carga", "Izquierda: línea verde arriba. Derecha: la verde abajo.",
-     f"La prueba de carga simula hasta {MAX} personas usando la plataforma a la vez. La iteración 2 aceleró las "
-     f"lecturas: de {n(t('v1', '1', 'ruta')['consultas_media'], 0)} consultas a {n(t('v2', '1', 'ruta')['consultas_media'], 0)}. Pero, para mi sorpresa, con mucha gente no mejoró. El cuello de botella se había "
-     "movido a la escritura: la base admite un solo escritor, y cada «Completar» esperaba su turno para escribir en "
-     "disco, como una fila de una sola caja. En la iteración 3, el cajero anota en una libreta y pasa todo al sistema "
-     f"cada 100 milisegundos. Resultado con {MAX} usuarios: de {n(E2['v1'][MAX]['rps'], 0)} a "
-     f"{n(E2['v3'][MAX]['rps'], 0)} solicitudes por segundo, y el peor caso bajó de {n(E2['v1'][MAX]['p99_ms'] / 1000, 0)} "
-     "segundos a una décima de segundo."),
-    ("11:40 – 12:20", "12 · El cuello se mueve", "Recorrer las tres tarjetas.",
-     "Esta es la lección más importante de la unidad: el cuello de botella se mueve. Primero eran las lecturas, luego "
-     "la escritura y ahora es la CPU de un solo proceso; por eso, en la iteración 3, el rendimiento baja un poco al "
-     "subir los usuarios. Como el servicio no tiene estado, el siguiente paso es poner varias instancias con una caché "
-     "compartida. Cada mejora tuvo su costo: la ruta en caché puede estar desactualizada unos minutos y, si el servidor "
-     "se cae, se pueden perder hasta 100 milisegundos de avance."),
+    ("9:40 – 10:30", "10 · Ruta", "Señalar las tres barras de arriba abajo; luego la tarjeta de Luisa y la de abajo.",
+     "¿La ruta nueva ayuda a cumplir? Para responderlo simulé a los 2.000 colaboradores de prueba: cada uno estudia sus "
+     "minutos diarios siguiendo el orden que le muestra la plataforma, y miré cuántos cursos obligatorios terminan "
+     "antes de su fecha límite. Leámoslo como «de cada 100 cursos». Con el orden alfabético de hoy, "
+     f"{round(A['a_tiempo_pct'])} de cada 100 terminan a tiempo; con la ruta por urgencia, {round(U['a_tiempo_pct'])}. "
+     "El ejemplo es Luisa, la operaria de la demostración: con la lista de hoy empieza por dos electivos y su curso "
+     "de alturas avanzado, que vence el 2 de diciembre, lo terminaría el 14, tarde. Con la ruta por urgencia hace "
+     "primero la inducción y alturas básico, que es requisito, y termina alturas avanzado el 30 de noviembre, a "
+     "tiempo. ¿Por qué no basta con ordenar por fecha? Abajo está la respuesta: en los reentrenamientos que dependen "
+     f"de otro curso, ordenar por fecha logra {round(F['vencimientos_con_prerrequisito_a_tiempo_pct'])} de cada 100 y "
+     f"la urgencia {round(U['vencimientos_con_prerrequisito_a_tiempo_pct'])}, porque solo la urgencia adelanta el "
+     "curso que es requisito. Es como un GPS que sabe que antes de la autopista hay que pasar por el retorno."),
+    ("10:30 – 11:40", "11 · Carga", "Señalar las tres barras; luego las dos tarjetas de la derecha.",
+     f"Ahora, ¿aguanta mucha gente a la vez? Simulé {MAX} colaboradores durante 20 segundos haciendo lo de siempre: "
+     "ver su ruta, continuar, marcar lecciones completadas y mirar el catálogo. Piénsenlo como un supermercado con "
+     f"{MAX} clientes en caja. Las barras dicen cuántas solicitudes atiende el sistema por segundo: hoy "
+     f"{round(E2['v1'][MAX]['rps'])}, con la iteración 2 {round(E2['v2'][MAX]['rps'])} y con la iteración 3 "
+     f"{round(E2['v3'][MAX]['rps'])}, unas siete veces más. A la derecha está lo que siente el usuario. Al marcar una "
+     f"lección como completada, hoy, 5 de cada 100 veces la persona espera {round(t('v1', MAX, 'completar')['p95_ms'] / 1000)} "
+     f"segundos o más; con la iteración 3, nunca más de {n(t('v3', MAX, 'completar')['p95_ms'] / 1000, 2)} segundos. Y "
+     f"la peor espera de todas, la de 1 de cada 100 clics, bajó de {round(E2['v1'][MAX]['p99_ms'] / 1000)} segundos a "
+     f"{n(E2['v3'][MAX]['p99_ms'] / 1000, 1)}."),
+    ("11:40 – 12:20", "12 · El cuello se mueve", "Recorrer las tres tarjetas de izquierda a derecha.",
+     "¿Por qué hicieron falta tres iteraciones? Sigamos con el supermercado. En la iteración 1, el cajero busca el "
+     f"precio de cada producto en una lista: armar la ruta de una persona costaba {round(t('v1', '1', 'ruta')['consultas_media'])} "
+     "consultas a la base. En la iteración 2 le pusimos lector de código de barras: caché, índices y "
+     f"{round(t('v2', '1', 'ruta')['consultas_media'])} consultas. Leer quedó rapidísimo, pero apareció otra fila: hay "
+     "un solo datáfono para pagar. La base admite un solo escritor, y cada «Completar» esperaba su turno. Por eso la "
+     "iteración 2 casi no mejoró con mucha gente. En la iteración 3, el cajero anota los pagos y los pasa todos juntos "
+     "cada 100 milisegundos, y la fila desaparece. El siguiente tapón ya es que hay un solo cajero, la CPU de un solo "
+     "servidor; la solución sería abrir más cajas, es decir, más instancias. Esa es la lección de la unidad: el cuello "
+     "de botella se mueve, y cada mejora tiene su costo; por ejemplo, si el servidor se cae, se pueden perder hasta 100 "
+     "milisegundos de avance."),
     ("12:20 – 13:00", "13 · Catálogo", "Señalar la línea naranja que sube y la verde plana.",
      "Por último, el catálogo. Con OFFSET, para mostrarte la página 2.500 la base cuenta y descarta 50.000 cursos, como "
      f"leer un libro desde la primera página cada vez: {n(E3['v1'][PMAX], 0)} milisegundos. Con la paginación por llave, "
@@ -222,16 +235,16 @@ s = prs.slides.add_slide(L["PORTADA"])
 s.placeholders[100].text = "AulaNube Rutas"
 s.placeholders[101].text = "Estrategias de navegación optimizadas para las rutas de formación"
 caja(s, 0.6, 0.5, 8.8, 0.35, "Arquitectura de Software · Unidad 3 · Actividad 6 «Navegando mareas: Estrategias de navegación en la arquitectura de software»", 12, blanco=True)
-caja(s, 0.6, 3.75, 8.8, 0.35, f"Video: {VIDEO}", 14, negrita=True, blanco=True)
-_r = s.shapes[-1].text_frame.paragraphs[0].runs[0]
-if VIDEO.startswith("http"):
+if VIDEO:  # el enlace se agrega cuando exista el video: python scripts/construir_presentacion.py <enlace>
+    caja(s, 0.6, 3.75, 8.8, 0.35, f"Video: {VIDEO}", 14, negrita=True, blanco=True)
+    _r = s.shapes[-1].text_frame.paragraphs[0].runs[0]
     _r.hyperlink.address = VIDEO
     _h = _r._r.find(qn("a:rPr")).find(qn("a:hlinkClick"))
     _ext = _h.makeelement(qn("a:extLst"), {})
     _e = _ext.makeelement(qn("a:ext"), {"uri": "{A12FA001-AC4F-418D-AE19-62706E023703}"})
     _e.append(_e.makeelement("{http://schemas.microsoft.com/office/drawing/2018/hyperlinkcolor}hlinkClr", {"val": "tx"}))
     _ext.append(_e); _h.append(_ext)
-_r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+    _r.font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
 caja(s, 0.6, 4.35, 8.8, 0.3, "Augusto César Cañola Ortiz · Docente: Ing. Leydi Johana Polo Amador", 13, blanco=True)
 caja(s, 0.6, 4.7, 8.8, 0.3, "Tecnológica del Oriente · Noviembre de 2026", 12, blanco=True)
 
@@ -319,40 +332,53 @@ for i, tx in enumerate(["Misma colaboradora en v1 y v3: orden, «tarde» y consu
     caja(s, 1.1, 3.15 + (i - 1) * 0.48, 8.3, 0.4, tx, 15, blanco=True)
 
 # 10 · Ruta
-s = contenido("La ruta por urgencia cumple más")
-imagen(s, RES / "fig-ruta.png", 0.5, 1.2, w=6.3, marco=False)
-for i, (c, d_) in enumerate([(f"{n(U['a_tiempo_pct'], 0)} %", f"obligatorios a tiempo (antes {n(A['a_tiempo_pct'], 0)} %)"),
-                             (f"{n(U['colaboradores_al_dia_pct'], 0)} %", f"colaboradores al día (antes {n(A['colaboradores_al_dia_pct'], 0)} %)"),
-                             (f"{n(U['continuar_lleva_a_obligatorio_pct'], 1)} %", f"«Continuar» lleva a un obligatorio (antes {n(A['continuar_lleva_a_obligatorio_pct'], 1)} %)")]):
-    y = 1.2 + i * 1.25
-    tarjeta(s, 7.0, y, 2.5, 1.1)
-    caja(s, 7.15, y + 0.08, 2.25, 0.5, c, 22, AC1, True)
-    caja(s, 7.15, y + 0.58, 2.25, 0.5, d_, 11)
+s = contenido("¿La ruta nueva ayuda a cumplir a tiempo?")
+caja(s, 0.5, 1.05, 9.0, 0.5, "Simulación con 2.000 colaboradores: de cada 100 cursos obligatorios, ¿cuántos terminan antes de su fecha límite?", 14, AC5)
+imagen(s, RES / "ppt-ruta.png", 0.4, 1.6, w=5.6, h=2.4, marco=False)
+tarjeta(s, 6.2, 1.6, 3.3, 2.4)
+caja(s, 6.4, 1.72, 2.95, 0.35, "Ejemplo: Luisa, operaria", 14, AC1, True)
+caja(s, 6.4, 2.1, 2.95, 1.85, ["Hoy: empieza por 2 electivos. Alturas avanzado vence el 2 dic y lo termina el 14 dic → tarde.",
+                               "Con urgencia: inducción → alturas básico → alturas avanzado, que termina el 30 nov → a tiempo."], 11)
+tarjeta(s, 0.5, 4.15, 9.0, 0.75)
+caja(s, 0.7, 4.22, 8.6, 0.65,
+     f"Donde más se nota: reentrenamientos que dependen de otro curso. Alfabético {round(A['vencimientos_con_prerrequisito_a_tiempo_pct'])} · "
+     f"por fecha {round(F['vencimientos_con_prerrequisito_a_tiempo_pct'])} · urgencia {round(U['vencimientos_con_prerrequisito_a_tiempo_pct'])} "
+     "de cada 100, porque solo la urgencia adelanta el curso que es requisito.", 13, negrita=True, ancla=MSO_ANCHOR.MIDDLE)
 
 # 11 · Carga
-s = contenido(f"Con {MAX} usuarios simultáneos")
-imagen(s, RES / "fig-carga.png", 0.5, 1.15, w=6.3, marco=False)
-for i, (c, d_) in enumerate([(f"{n(E2['v1'][MAX]['rps'], 0)} → {n(E2['v3'][MAX]['rps'], 0)}", "solicitudes por segundo"),
-                             (f"{n(t('v1', MAX, 'completar')['p95_ms'] / 1000, 0)} s → {n(t('v3', MAX, 'completar')['p95_ms'], 0)} ms", "p95 de «Completar»"),
-                             (f"{n(E2['v1'][MAX]['p99_ms'] / 1000, 0)} s → {n(E2['v3'][MAX]['p99_ms'] / 1000, 2)} s", "p99 de todas las solicitudes")]):
-    y = 1.2 + i * 1.25
-    tarjeta(s, 7.0, y, 2.5, 1.1)
-    caja(s, 7.15, y + 0.08, 2.25, 0.5, c, 17, AC1, True)
-    caja(s, 7.15, y + 0.6, 2.25, 0.45, d_, 11)
+s = contenido(f"¿Aguanta {MAX} personas a la vez?")
+caja(s, 0.5, 1.05, 9.0, 0.5, f"Prueba de carga: {MAX} colaboradores simulados durante 20 s viendo su ruta, continuando, completando lecciones y viendo el catálogo.", 13, AC5)
+imagen(s, RES / "ppt-carga.png", 0.4, 1.6, w=5.6, h=3.2, marco=False)
+for i, (antes, despues, desc) in enumerate([
+        (f"{round(t('v1', MAX, 'completar')['p95_ms'] / 1000)} s", f"{n(t('v3', MAX, 'completar')['p95_ms'] / 1000, 2)} s",
+         "Al marcar una lección completada, 5 de cada 100 veces se espera esto o más"),
+        (f"{round(E2['v1'][MAX]['p99_ms'] / 1000)} s", f"{n(E2['v3'][MAX]['p99_ms'] / 1000, 1)} s",
+         "La peor espera: la de 1 de cada 100 clics")]):
+    y = 1.65 + i * 1.6
+    tarjeta(s, 6.2, y, 3.3, 1.45)
+    caja(s, 6.4, y + 0.1, 2.95, 0.55, f"{antes} → {despues}", 22, AC1, True)
+    caja(s, 6.4, y + 0.7, 2.95, 0.7, desc, 11)
+caja(s, 6.2, 4.85, 3.3, 0.3, "Hoy → iteración 3", 10, AC5, cursiva=True)
 
 # 12 · El cuello se mueve
 s = contenido("El cuello de botella se mueve")
-for i, (it, hall, cambio, costo, color) in enumerate([
-        ("Iteración 2", "Lecturas N+1 y orden alfabético", "Consultas agrupadas, índices, caché, ruta por urgencia", "La ruta en caché puede quedar desactualizada", AC2),
-        ("Iteración 3", "Escritura en fila de una sola caja", "Cola y escritura por lotes cada 100 ms", "Si se cae se pierden ≤ 100 ms de avance", AC1),
-        ("Siguiente", "CPU de un solo proceso", "Varias instancias sin estado + caché compartida", "Infraestructura adicional", AC5)]):
-    x = 0.5 + i * 3.05
-    tarjeta(s, x, 1.2, 2.85, 3.5)
-    insignia(s, x + 0.2, 1.38, str(i + 2) if i < 2 else "→", color)
-    caja(s, x + 0.75, 1.42, 2.0, 0.4, it, 16, color, True)
-    caja(s, x + 0.2, 2.0, 2.5, 0.75, "Hallazgo: " + hall, 13, negrita=True)
-    caja(s, x + 0.2, 2.8, 2.5, 0.95, "Cambio: " + cambio, 12)
-    caja(s, x + 0.2, 3.8, 2.5, 0.8, "Costo: " + costo, 12, AC3)
+caja(s, 0.5, 1.05, 9.0, 0.4, "Como en un supermercado: al quitar una fila, aparece la siguiente.", 15, AC5, cursiva=True)
+etapas = [
+    ("1", "Iteración 1 · hoy", "El cajero busca el precio de cada producto en una lista",
+     f"{round(t('v1', '1', 'ruta')['consultas_media'])} consultas para armar una ruta", f"{round(E2['v1'][MAX]['rps'])} solicitudes/s", AC3),
+    ("2", "Iteración 2", "Lector de código de barras… pero un solo datáfono para pagar",
+     f"Leer: {round(t('v2', '1', 'ruta')['consultas_media'])} consultas. Escribir: un solo escritor, todos en fila", f"{round(E2['v2'][MAX]['rps'])} solicitudes/s", AC2),
+    ("3", "Iteración 3", "Anota los pagos y los pasa juntos cada 100 ms",
+     "El avance va a una cola y se guarda por lotes", f"{round(E2['v3'][MAX]['rps'])} solicitudes/s", AC1)]
+for k, (num_, tit, analogia, tecnico, cifra, color) in enumerate(etapas):
+    x = 0.5 + k * 3.05
+    tarjeta(s, x, 1.6, 2.85, 2.75)
+    insignia(s, x + 0.2, 1.75, num_, color)
+    caja(s, x + 0.75, 1.8, 2.0, 0.35, tit, 14, color, True)
+    caja(s, x + 0.2, 2.35, 2.5, 0.85, analogia, 13, negrita=True)
+    caja(s, x + 0.2, 3.2, 2.5, 0.6, tecnico, 11, AC5)
+    caja(s, x + 0.2, 3.85, 2.5, 0.4, cifra, 16, color, True)
+caja(s, 0.5, 4.5, 9.0, 0.45, "Siguiente tapón: un solo cajero (la CPU de un servidor) → abrir más cajas (más instancias sin estado).", 13, AC1, True)
 
 # 13 · Catálogo
 s = contenido("Catálogo: un marcapáginas en lugar de contar")

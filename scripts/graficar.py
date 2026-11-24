@@ -103,3 +103,51 @@ if __name__ == "__main__":
     carga()
     catalogo()
     print("Gráficos en", SAL)
+
+
+# ---------------------------------------------------------------- versiones simples para la presentación
+def ppt_ruta() -> None:
+    """De cada 100 cursos obligatorios, ¿cuántos terminan a tiempo?"""
+    e = R["E1"]
+    filas = [("Orden alfabético (hoy)", e["alfabetico"]["a_tiempo_pct"], V1),
+             ("Primero lo que vence", e["fecha"]["a_tiempo_pct"], V2),
+             ("Urgencia con prerrequisitos", e["urgencia"]["a_tiempo_pct"], V3)]
+    fig, ax = plt.subplots(figsize=(5.0, 2.3))
+    for i, (nombre, v, color) in enumerate(reversed(filas)):
+        ax.barh(i, v, color=color, height=0.6, zorder=3)
+        ax.text(v + 1.5, i, f"{round(v)} de cada 100", va="center", fontsize=12, color=TINTA, fontweight="bold")
+    ax.set_yticks(range(3), [f[0] for f in reversed(filas)], fontsize=11)
+    ax.set_xlim(0, 165)
+    ax.set_xticks([])
+    ax.grid(False)
+    ax.spines[["left", "bottom"]].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+    fig.tight_layout()
+    fig.savefig(SAL / "ppt-ruta.png")
+    plt.close(fig)
+
+
+def ppt_carga() -> None:
+    """Con 50 personas a la vez: ¿cuántas solicitudes atiende por segundo cada iteración?"""
+    e = R["E2"]
+    mx = str(max(int(k) for k in e["v1"]))
+    filas = [("Iteración 1\n(hoy)", e["v1"][mx]["rps"], V1), ("Iteración 2\n(lecturas)", e["v2"][mx]["rps"], V2),
+             ("Iteración 3\n(+ cola)", e["v3"][mx]["rps"], V3)]
+    fig, ax = plt.subplots(figsize=(4.6, 3.0))
+    for i, (nombre, v, color) in enumerate(filas):
+        ax.bar(i, v, color=color, width=0.6, zorder=3)
+        ax.text(i, v + 20, f"{round(v):,}".replace(",", "."), ha="center", va="bottom", fontsize=14,
+                fontweight="bold", color=TINTA)
+    ax.set_xticks(range(3), [f[0] for f in filas], fontsize=11)
+    ax.set_ylim(0, max(f[1] for f in filas) * 1.2)
+    ax.set_yticks([])
+    ax.grid(False)
+    ax.spines[["left"]].set_visible(False)
+    ax.set_title("Solicitudes atendidas por segundo", loc="left", fontsize=12)
+    fig.tight_layout()
+    fig.savefig(SAL / "ppt-carga.png")
+    plt.close(fig)
+
+
+ppt_ruta()
+ppt_carga()
