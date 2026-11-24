@@ -146,38 +146,56 @@ BLOQUES = [
      f"{n(t('v1', '1', 'ruta')['consultas_media'], 0)} consultas a la base solo para dibujar esa lista, como quien va a la "
      "bodega a traer un tornillo a la vez. El catálogo empeora a medida que bajas: la página 2.500 tarda "
      f"{n(E3['v1'][PMAX], 0)} milisegundos."),
-    ("1:50 – 2:40", "3 · Sistemas reales", "Una tarjeta por familia.",
-     "Para diseñar la solución miré cómo navegan otros sistemas. Una aplicación de mapas no te muestra las calles en "
-     "orden alfabético: calcula la ruta más conveniente en un grafo con restricciones. Una tienda en línea con miles de "
-     "productos no cuenta todo para mostrarte la página siguiente: continúa desde el último que viste, como un "
-     "marcapáginas. Y un sistema de recomendación ordena según un puntaje tuyo. Aquí ese puntaje es la urgencia: qué "
-     "vence primero y qué hay que hacer antes."),
-    ("2:40 – 3:20", "4 · Escenarios", "Leer EN1 a EN4.",
-     "Como en ATAM, convertí eso en cuatro escenarios medibles: que la ruta suba los cursos a tiempo, que «Continuar» "
-     f"lleve en un clic a la lección pendiente, que con {MAX} usuarios simultáneos cada operación responda en menos de "
-     "200 milisegundos y que el catálogo no se vuelva más lento al bajar. Trabajé individualmente, asumiendo por fases "
-     "los roles de líder, investigador de patrones, diseñador UML y programador."),
-    ("3:20 – 4:20", "5 · Componentes", "Recorrer el diagrama de arriba abajo.",
-     "Este es el diagrama de componentes. El navegador guarda el historial; el servicio no guarda estado, así que se "
-     "pueden poner varias instancias detrás de un balanceador. Dentro del servicio están las estrategias de ruta, el "
-     "árbol del curso, el publicador de eventos, la caché y el repositorio. Abajo se ve la relación con las unidades "
-     "anteriores: la malla de cargues de la Unidad 2 crea las matrículas que aquí se convierten en rutas."),
-    ("4:20 – 5:30", "6 · Patrones", "Uno por tarjeta.",
-     "Cada patrón resuelve un problema. Strategy: el orden de la ruta es intercambiable, así comparé tres criterios con "
-     "los mismos datos. Composite: un curso tiene módulos y un módulo tiene lecciones, y todos responden «¿cuánto te "
-     "falta?». Iterator: recorre ese árbol saltándose lo completado; «Continuar» no necesita saber cómo está armado el "
-     "curso. Command: cada clic de navegación es un objeto, y el botón «Atrás» vive en el navegador. Observer: cuando "
-     "completas una lección, se avisa a la caché para que borre tu ruta vieja. Y Cache-Aside: la ruta se guarda la "
-     "primera vez que se pide y se reutiliza."),
-    ("5:30 – 6:20", "7 · Secuencia", "Seguir la secuencia del diagrama.",
-     "Así se ve «Continuar». Si tu ruta está en caché, ni siquiera toca la base. Si no, la arma con dos consultas "
-     "agrupadas, la ordena por urgencia y el iterador entrega tu siguiente lección. Abajo, al completar una lección, el "
-     "observador invalida tu ruta, y en la iteración 3 el avance va a una cola que un hilo guarda en lotes."),
-    ("6:20 – 7:10", "8 · Algoritmo", "Señalar el ejemplo de alturas.",
-     "El corazón es la ruta por urgencia. Piensen en un GPS que sabe que no puedes tomar la autopista sin pasar antes "
-     "por el retorno. El avanzado de alturas vence el día 8 y necesita el básico; el básico vence con la campaña, el "
-     "día 20. Si solo miro fechas, el básico parece no tener prisa. La estrategia por urgencia le hereda al básico la "
-     "fecha del avanzado, menos el tiempo de estudio del avanzado. Así el básico pasa adelante y los dos quedan a tiempo."),
+    ("", "3 · Sistemas reales", "Una tarjeta por familia: primero lo que hace ese sistema y luego, en naranja, cómo lo usé.",
+     "Antes de diseñar miré cómo resuelven la navegación tres tipos de sistemas que todos usamos. Una aplicación de "
+     "mapas no te muestra las calles en orden alfabético: te propone la mejor ruta y respeta las calles de un solo "
+     "sentido. En AulaNube eso es respetar qué curso va antes de cuál. Una tienda en línea, cuando bajas por los "
+     "productos, sigue desde el último que viste; eso lo usé en el catálogo. Y una plataforma de video te muestra "
+     "primero lo que más te interesa; aquí, lo primero es lo más urgente."),
+    ("", "4 · Escenarios", "Leer las cuatro tarjetas.",
+     "Con eso definí cuatro metas medibles, que en ATAM se llaman escenarios de calidad: una situación y la respuesta "
+     "que se espera, con un número para comprobarla. Uno: que más cursos obligatorios terminen a tiempo que con la "
+     "lista de hoy. Dos: que «Continuar» lleve en un clic a la lección que falta. Tres: que con 50 personas a la vez, "
+     "95 de cada 100 clics respondan en menos de dos décimas de segundo. Cuatro: que bajar en el catálogo no lo vuelva "
+     "más lento. Trabajé de forma individual, asumiendo por fases los roles de líder, investigador de patrones, "
+     "diseñador UML y programador."),
+    ("", "5 · Arquitectura", "Recorrer las tres capas de arriba abajo.",
+     "Así está armado, en tres capas. Arriba, el navegador del colaborador: las pantallas y el historial del botón "
+     "«Atrás». En el medio, el servicio de rutas, que hace cuatro trabajos: ordena la ruta, recorre el curso, avisa "
+     "cuando algo cambia y guarda en memoria lo que ya calculó. Un detalle importante: este servicio no guarda nada "
+     "de cada usuario entre un clic y otro, como un cajero que no necesita conocerte para atenderte; por eso se pueden "
+     "abrir varios iguales si llega más gente. Abajo, la base de datos del LMS, la misma de las unidades anteriores, "
+     "donde la malla de cargues de la Unidad 2 deja las matrículas. Al lado, la cola de avance de la iteración 3."),
+    ("", "6 · Diagrama de componentes", "Recorrer el diagrama de izquierda a derecha con el cursor.",
+     "Este es el mismo dibujo en UML, el diagrama de componentes, y se lee de izquierda a derecha. A la izquierda, "
+     "el colaborador y su navegador, con la vista y el navegador de comandos que guarda el historial. En el centro, "
+     "el recuadro grande es el servicio de rutas: la API recibe el clic, el servicio de navegación reparte el trabajo "
+     "entre las estrategias de ruta, el contenido del curso, el publicador de eventos y el repositorio, que usa la "
+     "caché para lo que ya calculó y la cola con su escritor para guardar el avance. A la derecha, la base del LMS, "
+     "que también alimentan el servicio de cursos de la Unidad 1 y la malla de cargues de la Unidad 2."),
+    ("", "7 · Patrones", "Una tarjeta por patrón: nombre, comparación y ejemplo.",
+     "Cada patrón resuelve un problema concreto y lo explico con algo cotidiano. Strategy es como elegir en el GPS "
+     "«ruta más rápida» o «sin peajes»: cambia el criterio, no el mapa; así comparé el orden alfabético, por fecha y "
+     "por urgencia. Composite es una caja que tiene cajas adentro: el curso tiene módulos y los módulos lecciones, y "
+     "a cualquiera le puedo preguntar cuánto le falta. Iterator es el dedo que recorre el índice saltando lo ya "
+     "leído: así «Continuar» encuentra tu lección pendiente. Command es como el historial del navegador: cada clic "
+     "queda anotado y por eso funciona «Atrás». Observer es una suscripción: cuando completas una lección se avisa a "
+     "quien le interese, y la memoria borra tu ruta vieja. Cache-Aside es apuntar en un papel lo que ya calculaste "
+     "para no volver a calcularlo en cada clic."),
+    ("", "8 · Secuencia", "Recorrer la fila de arriba y luego la de abajo.",
+     "Esto es lo que pasa por dentro, paso a paso. Al dar clic en «Continuar», primero se pregunta si tu ruta ya "
+     "está calculada en memoria; si no, se arma con solo dos consultas a la base y se ordena por urgencia. Luego se "
+     "toma el primer curso que puedas empezar, el iterador busca la siguiente lección que te falta y se abre. Al "
+     "marcar «Completada», el avance se anota en la cola, se avisa para borrar tu ruta vieja y se abre la lección "
+     "siguiente. El diagrama de secuencia UML completo está en el informe, figura 3."),
+    ("", "9 · Ruta por urgencia", "Comparar las dos filas del cronograma; señalar la línea punteada del día 8.",
+     "Este es el corazón: cómo se ordena la ruta. Un ejemplo con tres cursos de 4 días cada uno. Alturas avanzado "
+     "vence el día 8 y exige el básico; el básico y riesgo eléctrico vencen con la campaña, más adelante. Fila de "
+     "arriba, «primero lo que vence»: el avanzado vence primero pero está bloqueado, así que la persona hace riesgo "
+     "eléctrico, luego el básico, y el avanzado termina el día 12: tarde. Fila de abajo, urgencia: como el básico es "
+     "requisito de algo que vence el día 8, hereda esa urgencia; tiene que terminar el día 4. Entonces va primero, el "
+     "avanzado termina el día 8, a tiempo, y riesgo eléctrico también alcanza. Es el GPS que sabe que antes de la "
+     "autopista hay que pasar por el retorno."),
     ("7:10 – 9:40", "9 · Demostración", "Pantalla: https://rutas-v1.149-130-191-139.sslip.io y https://rutas.149-130-191-139.sslip.io, colaboradora Luisa Rodríguez Jaimes.",
      "Ahora el prototipo, desplegado en Oracle Cloud en el mismo clúster de la Unidad 1. A la izquierda, la versión 1: la misma operaria ve primero dos electivos y su alturas avanzado "
      "sale «tarde»; abajo se ve que la página costó 92 consultas. A la derecha, la versión 3: inducción, alturas básico "
@@ -233,6 +251,16 @@ BLOQUES = [
      "los diagramas y el informe están en el repositorio. Gracias."),
 ]
 
+# Duración de cada diapositiva en segundos; los tiempos del guion se calculan a partir de aquí.
+DURACION = [40, 70, 45, 40, 50, 40, 70, 45, 50, 150, 50, 65, 45, 40, 45]
+_reloj, _con_tiempo = 0, []
+for _k, (_t, _dia, _pantalla, _texto) in enumerate(BLOQUES):
+    _ini, _reloj = _reloj, _reloj + DURACION[_k]
+    _con_tiempo.append((f"{_ini // 60}:{_ini % 60:02d} – {_reloj // 60}:{_reloj % 60:02d}",
+                        f"{_k + 1} · {_dia.split(' · ', 1)[1]}", _pantalla, _texto))
+BLOQUES = _con_tiempo
+TOTAL = f"{_reloj // 60} min {_reloj % 60:02d} s"
+
 # =================================================================== diapositivas
 # 1 · Portada
 s = prs.slides.add_slide(L["PORTADA"])
@@ -264,65 +292,107 @@ caja(s, 0.5, 4.5, 9.0, 0.45, "Dos problemas de arquitectura: orientar al colabor
 
 # 3 · Sistemas reales
 s = contenido("Cómo navegan otros sistemas")
-for i, (tit, desc, aqui) in enumerate([
-        ("Mapas", "Ruta de menor costo en un grafo con restricciones", "Prerrequisitos = orden topológico"),
-        ("Comercio electrónico", "Filtros y «cargar más» desde el último producto visto", "Paginación por llave"),
-        ("Recomendación", "Orden según un puntaje propio del usuario", "Puntaje = urgencia")]):
-    x = 0.5 + i * 3.05
+for k, (tit, hace, aqui) in enumerate([
+        ("Mapas", "Te proponen la mejor ruta y respetan las calles de un solo sentido", "Respetar qué curso va antes de cuál"),
+        ("Tiendas en línea", "Al bajar, siguen desde el último producto que viste", "«Cargar 20 más» en el catálogo"),
+        ("Plataformas de video", "Te muestran primero lo que más te interesa", "Primero lo más urgente")]):
+    x = 0.5 + k * 3.05
     tarjeta(s, x, 1.2, 2.85, 3.1)
     caja(s, x + 0.2, 1.38, 2.5, 0.4, tit, 17, AC1, True)
-    caja(s, x + 0.2, 1.9, 2.5, 1.2, desc, 14)
-    caja(s, x + 0.2, 3.35, 2.5, 0.8, "En AulaNube: " + aqui, 13, AC2, True)
-caja(s, 0.5, 4.5, 9.0, 0.45, "Tres estrategias comparadas: alfabética (actual), primero lo que vence y urgencia con prerrequisitos.", 14, AC5)
+    caja(s, x + 0.2, 1.9, 2.5, 1.2, hace, 14)
+    caja(s, x + 0.2, 3.3, 2.5, 0.85, "En AulaNube: " + aqui, 13, AC2, True)
+caja(s, 0.5, 4.5, 9.0, 0.45, "Se compararon tres órdenes para la ruta: alfabético (hoy), primero lo que vence y urgencia.", 14, AC5)
 
 # 4 · Escenarios
-s = contenido("Escenarios de calidad (ATAM)")
-for i, (tit, desc) in enumerate([
-        ("EN1 · Efectividad", "Más cursos obligatorios terminados a tiempo que con el orden actual"),
-        ("EN2 · Eficiencia", "«Continuar» lleva en 1 clic a la siguiente lección pendiente"),
-        ("EN3 · Desempeño", f"Con {MAX} usuarios, p95 < 200 ms y Apdex ≥ 0,94"),
-        ("EN4 · Escalabilidad", "La página siguiente del catálogo cuesta lo mismo a cualquier profundidad")]):
-    x, y = 0.5 + (i % 2) * 4.6, 1.2 + (i // 2) * 1.55
+s = contenido("Cuatro metas medibles (escenarios ATAM)")
+for k, (tit, desc) in enumerate([
+        ("Cumplir", "Más cursos obligatorios terminados a tiempo que con la lista de hoy"),
+        ("Un clic", "«Continuar» lleva directo a la lección que falta"),
+        ("Rapidez", f"Con {MAX} personas a la vez, 95 de cada 100 clics responden en menos de 0,2 s"),
+        ("Catálogo", "Bajar en el catálogo no lo vuelve más lento")]):
+    x, y = 0.5 + (k % 2) * 4.6, 1.2 + (k // 2) * 1.55
     tarjeta(s, x, y, 4.4, 1.35)
-    insignia(s, x + 0.25, y + 0.25, f"0{i + 1}", d=0.55)
-    caja(s, x + 1.0, y + 0.2, 3.25, 0.35, tit, 15, negrita=True)
-    caja(s, x + 1.0, y + 0.58, 3.25, 0.7, desc, 13)
+    insignia(s, x + 0.25, y + 0.25, f"0{k + 1}", d=0.55)
+    caja(s, x + 1.0, y + 0.2, 3.25, 0.35, tit, 16, negrita=True)
+    caja(s, x + 1.0, y + 0.6, 3.25, 0.7, desc, 13)
 caja(s, 0.5, 4.4, 9.0, 0.5, "Trabajo individual: los roles de líder, investigador de patrones, diseñador UML y programador se asumieron por fases.", 13, AC5)
 
-# 5 · Componentes
-s = contenido("Arquitectura: un servicio sin estado")
-imagen(s, UML / "componentes.png", 0.5, 1.1, h=4.0)
-puntos(s, 5.35, 1.25, 4.15, ["El historial «Atrás» vive en el navegador (Command)",
-                             "Ruta y árbol del curso en caché (Cache-Aside)",
-                             "Completar avisa por eventos (Observer)",
-                             "Iteración 3: cola y escritor por lotes"], 0.95, 13)
+# 5 · Arquitectura en tres capas
+s = contenido("¿Cómo está armado? Tres capas")
+capas = [
+    ("1 · Navegador del colaborador", ["Pantallas: Mi ruta, lección y catálogo", "Historial del botón «Atrás» (Command)"], AC1),
+    ("2 · Servicio AulaNube Rutas · no guarda estado: se pueden abrir varios iguales",
+     ["Ordena la ruta (Strategy)", "Recorre el curso (Composite + Iterator)", "Avisa cambios (Observer)", "Recuerda lo calculado (caché)"], AC2),
+    ("3 · Base de datos del LMS (la misma de las unidades 1 y 2)", ["Cursos, lecciones, matrículas y avance"], AC5)]
+for k, (tit, chips, color) in enumerate(capas):
+    y = 1.1 + k * 1.3
+    tarjeta(s, 0.5, y, 6.6, 1.1)
+    caja(s, 0.7, y + 0.08, 6.3, 0.35, tit, 13, color, True)
+    ancho = (6.2 - 0.12 * (len(chips) - 1)) / len(chips)
+    for c, chip in enumerate(chips):
+        cx = 0.7 + c * (ancho + 0.12)
+        f = s.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(cx), Inches(y + 0.5), Inches(ancho), Inches(0.48))
+        f.fill.solid(); f.fill.fore_color.rgb = RGBColor(0xFF, 0xFF, 0xFF); f.line.fill.background(); f.shadow.inherit = False
+        caja(s, cx + 0.06, y + 0.5, ancho - 0.12, 0.48, chip, 11, alin=PP_ALIGN.CENTER, ancla=MSO_ANCHOR.MIDDLE)
+    if k < 2:
+        caja(s, 3.6, y + 1.08, 0.4, 0.22, "▼", 12, color, True, alin=PP_ALIGN.CENTER)
+tarjeta(s, 7.3, 2.4, 2.2, 2.4)
+caja(s, 7.45, 2.5, 1.95, 0.35, "Cola de avance", 14, AC1, True)
+caja(s, 7.45, 2.9, 1.95, 1.8, "Iteración 3: al completar una lección se anota aquí y un hilo la guarda en la base cada 100 ms.", 11)
+caja(s, 7.3, 1.15, 2.2, 1.1, "La malla de cargues (Unidad 2) crea las matrículas en la misma base.", 11, AC5, cursiva=True)
 
-# 6 · Patrones
+# 6 · Diagrama de componentes (UML)
+s = contenido("Diagrama de componentes (UML)")
+imagen(s, UML / "componentes-ancho.png", 0.5, 1.3, w=9.0, h=3.2)
+for k, (tit, color) in enumerate([("1 · Navegador", AC1), ("2 · Servicio de rutas", AC2), ("3 · Base del LMS", AC5)]):
+    caja(s, [0.6, 3.6, 8.2][k], 4.6, 2.2, 0.35, tit, 13, color, True)
+
+# 7 · Patrones
 s = contenido("Patrones elegidos para navegar")
-pats = [("Strategy", "Criterio de orden de la ruta intercambiable"), ("Composite", "Curso > Módulo > Lección, todos dicen cuánto falta"),
-        ("Iterator", "Siguiente lección pendiente sin conocer el árbol"), ("Command", "Cada clic es un objeto; «Atrás» sin estado en el servidor"),
-        ("Observer", "Completar invalida solo tu ruta en caché"), ("Cache-Aside", "Se carga a petición y se invalida al cambiar"),
-        ("Cola", "Escribir el avance sin hacer esperar al usuario"), ("Repository", "Tres implementaciones, una por iteración")]
-for i, (tit, desc) in enumerate(pats):
-    x, y = 0.5 + (i % 4) * 2.3, 1.15 + (i // 4) * 1.85
-    tarjeta(s, x, y, 2.15, 1.7)
-    caja(s, x + 0.17, y + 0.15, 1.85, 0.4, tit, 15, AC1, True)
-    caja(s, x + 0.17, y + 0.65, 1.85, 0.95, desc, 12)
+pats = [("Strategy", "Como elegir en el GPS «más rápida» o «sin peajes»", "Alfabético, por fecha o por urgencia"),
+        ("Composite", "Una caja con cajas adentro", "Curso > módulos > lecciones: ¿cuánto falta?"),
+        ("Iterator", "El dedo que recorre el índice saltando lo leído", "«Continuar» halla tu lección pendiente"),
+        ("Command", "El historial del navegador", "Cada clic queda anotado: botón «Atrás»"),
+        ("Observer", "Una suscripción que avisa", "Al completar, se borra tu ruta vieja"),
+        ("Cache-Aside", "Apuntar en un papel lo ya calculado", "La ruta no se recalcula en cada clic")]
+for k, (tit, como, ejemplo) in enumerate(pats):
+    x, y = 0.5 + (k % 3) * 3.05, 1.15 + (k // 3) * 1.9
+    tarjeta(s, x, y, 2.85, 1.75)
+    caja(s, x + 0.2, y + 0.12, 2.5, 0.4, tit, 16, AC1, True)
+    caja(s, x + 0.2, y + 0.55, 2.5, 0.6, como, 13, negrita=True)
+    caja(s, x + 0.2, y + 1.15, 2.5, 0.55, ejemplo, 12, AC5)
 
-# 7 · Secuencia
-s = contenido("Secuencia: «Continuar» y «Completar»")
-imagen(s, UML / "secuencia.png", 0.5, 1.1, w=9.0, h=4.0)
+# 8 · Secuencia simplificada
+s = contenido("¿Qué pasa por dentro al dar clic?")
+filas = [("Al dar clic en «Continuar»", ["¿Tu ruta ya está calculada? Si no: 2 consultas y se ordena por urgencia",
+                                           "Toma el primer curso que puedes empezar",
+                                           "El iterador busca la siguiente lección que falta",
+                                           "Se abre la lección"], AC1),
+         ("Al marcar «Completada»", ["El avance se anota en la cola (sin esperar al disco)",
+                                      "Se avisa: se borra tu ruta vieja de la memoria",
+                                      "Se abre la lección siguiente"], AC2)]
+for r, (tit, pasos, color) in enumerate(filas):
+    y = 1.15 + r * 1.85
+    caja(s, 0.5, y, 9.0, 0.35, tit, 15, color, True)
+    ancho = (9.0 - 0.3 * (len(pasos) - 1)) / len(pasos)
+    for k, paso in enumerate(pasos):
+        x = 0.5 + k * (ancho + 0.3)
+        tarjeta(s, x, y + 0.42, ancho, 1.2)
+        insignia(s, x + 0.12, y + 0.52, str(k + 1), color, d=0.34)
+        caja(s, x + 0.12, y + 0.92, ancho - 0.24, 0.68, paso, 11)
+        if k < len(pasos) - 1:
+            caja(s, x + ancho + 0.02, y + 0.85, 0.26, 0.3, "→", 16, color, True, alin=PP_ALIGN.CENTER)
+caja(s, 0.5, 4.85, 9.0, 0.3, "Diagrama de secuencia UML completo: informe, figura 3.", 11, AC5, cursiva=True)
 
-# 8 · Algoritmo
-s = contenido("Ruta por urgencia: el GPS de la formación")
-imagen(s, UML / "actividad.png", 0.5, 1.1, h=4.0)
-tarjeta(s, 4.2, 1.2, 5.3, 3.6)
-caja(s, 4.45, 1.35, 4.9, 0.4, "Ejemplo", 16, AC1, True)
-caja(s, 4.45, 1.85, 4.9, 2.9, [
-    "• Alturas avanzado vence el día 8 y requiere el básico.",
-    "• El básico vence con la campaña, el día 20.",
-    "• «Primero lo que vence» ve al básico sin prisa → el avanzado sale tarde.",
-    "• Urgencia: el básico hereda la fecha del avanzado menos 4 días de estudio → fecha efectiva día 4 → va primero y ambos quedan a tiempo."], 13)
+# 9 · Ruta por urgencia con un ejemplo
+s = contenido("Ruta por urgencia: un ejemplo con 3 cursos")
+caja(s, 0.5, 1.05, 9.0, 0.45, "Cada curso dura 4 días. Alturas avanzado vence el día 8 y exige el básico; los otros vencen después.", 13, AC5)
+imagen(s, RES / "ppt-urgencia.png", 0.4, 1.5, w=6.3, h=2.6, marco=False)
+tarjeta(s, 6.9, 1.6, 2.6, 2.45)
+caja(s, 7.05, 1.7, 2.35, 0.35, "La regla", 15, AC1, True)
+caja(s, 7.05, 2.1, 2.35, 1.9, "Si un curso es requisito de otro que vence pronto, hereda su urgencia: el básico debe terminar el día 8 − 4 = día 4.", 12)
+caja(s, 0.5, 4.3, 9.0, 0.55, "Ordenar solo por fecha deja el básico para después y el avanzado sale tarde (✗). La urgencia lo adelanta y todo queda a tiempo (✓).", 13, AC1, True)
+caja(s, 0.5, 4.88, 9.0, 0.3, "Diagrama de actividad UML del algoritmo: informe, figura 4.", 11, AC5, cursiva=True)
 
 # 9 · Demostración
 s = prs.slides.add_slide(L["SECCION"])
@@ -426,7 +496,7 @@ g.styles["Normal"].font.size = Pt(11)
 for sec in g.sections:
     sec.left_margin = sec.right_margin = Inches(0.8)
 g.add_heading("Guion del video · AulaNube Rutas", 0)
-g.add_paragraph("Arquitectura de Software · Unidad 3 · Actividad 6 «Navegando mareas». Duración objetivo: 13 min 45 s "
+g.add_paragraph("Arquitectura de Software · Unidad 3 · Actividad 6 «Navegando mareas». Duración objetivo: " + TOTAL + " "
                 "(máximo 15). Subir a YouTube como «No listado».")
 prep = g.add_paragraph()
 prep.add_run("Antes de grabar: ").bold = True

@@ -180,3 +180,40 @@ def ppt_catalogo() -> None:
 
 
 ppt_catalogo()
+
+
+def ppt_urgencia() -> None:
+    """Ejemplo de 3 cursos (el mismo de las pruebas unitarias), estudiando 30 min al día."""
+    import sys as _s
+    _s.path.insert(0, str(RAIZ))
+    from rutas.dominio.ruta import CursoPendiente, PorFechaLimite, PorUrgencia, planificar
+    cursos = [CursoPendiente("BASICO", "Alturas básico", 120, 20),
+              CursoPendiente("AVANZADO", "Alturas avanzado", 120, 8, "vencimiento", frozenset({"BASICO"})),
+              CursoPendiente("RIESGO", "Riesgo eléctrico", 120, 15)]
+    colores = {"BASICO": "#5fb3a9", "AVANZADO": V2, "RIESGO": V1}
+    fig, ax = plt.subplots(figsize=(6.6, 2.6))
+    filas = [("Primero lo\nque vence", PorFechaLimite()), ("Urgencia", PorUrgencia())]
+    for fila, (nombre, est) in enumerate(filas):
+        y = len(filas) - 1 - fila
+        for it in planificar(cursos, est, 30):
+            ax.barh(y, it.termina_dia - it.inicia_dia, left=it.inicia_dia, height=0.55, color=colores[it.codigo],
+                    edgecolor=FONDO, linewidth=2, zorder=3)
+            corto = {"BASICO": "Alturas básico", "AVANZADO": "Alturas avanz.", "RIESGO": "Riesgo eléc."}[it.codigo]
+            etq = corto + (" ✗" if not it.a_tiempo else " ✓")
+            ax.text((it.inicia_dia + it.termina_dia) / 2, y, etq, ha="center", va="center", fontsize=10,
+                    color="white", fontweight="bold", zorder=4)
+    ax.axvline(8, color=TINTA, ls="--", lw=1.5, zorder=5)
+    ax.text(7.9, 1.45, "vence alturas avanzado (día 8)", fontsize=9, color=TINTA, va="bottom", ha="right")
+    ax.set_yticks(range(len(filas)), [f[0] for f in reversed(filas)], fontsize=11)
+    ax.set_xticks(range(0, 14, 2), [f"día {d}" for d in range(0, 14, 2)], fontsize=9)
+    ax.set_xlim(0, 13)
+    ax.set_ylim(-0.6, 1.9)
+    ax.grid(False)
+    ax.spines[["left"]].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+    fig.tight_layout()
+    fig.savefig(SAL / "ppt-urgencia.png")
+    plt.close(fig)
+
+
+ppt_urgencia()

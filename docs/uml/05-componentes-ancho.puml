@@ -1,0 +1,51 @@
+@startuml componentes-ancho
+!include estilo.iuml
+title AulaNube Rutas · Diagrama de componentes
+left to right direction
+skinparam defaultFontSize 22
+skinparam ArrowFontSize 17
+skinparam nodesep 20
+skinparam ranksep 40
+skinparam nodesep 35
+skinparam ranksep 45
+
+actor "Colaborador\n(estudiante)" as COL
+
+package "Navegador web" {
+  component "Vista\n(Mi ruta, Lector, Catálogo)" as VISTA
+  component "Navegador de comandos\n«Command»\nhistorial «Atrás»" as CMD
+}
+
+package "Servicio AulaNube Rutas (sin estado, N instancias)" {
+  component "API HTTP\n(controlador)" as API
+  component "ServicioNavegacion" as SRV
+  component "Estrategias de ruta\n«Strategy»\nAlfabética · Fecha · Urgencia" as EST
+  component "Contenido del curso\n«Composite» + «Iterator»" as CONT
+  component "Publicador de eventos\n«Observer»" as PUB
+  component "Repositorio\nv1 ingenuo · v2 optimizado\nv3 asíncrono" as REPO
+  queue "Cola de avance\n(v3)" as COLA
+  component "Escritor de avance\nhilo · lote cada 100 ms" as ESC
+  component "Caché\n«Cache-Aside»" as CACHE
+}
+
+database "Base del LMS\ncursos, lecciones,\nmatrículas, avance" as DB
+component "Servicio Cursos\nde AulaNube (Unidad 1)" as U1
+component "Malla de cargues\n(Unidad 2)" as U2
+
+COL --> VISTA
+VISTA --> CMD
+CMD --> API : HTTP /ruta /continuar\n/lecciones /catalogo
+API --> SRV
+SRV --> EST : planificar(pendientes)
+SRV --> CONT : siguiente lección pendiente
+SRV --> PUB : leccion.completada
+PUB ..> CACHE : invalidar ruta\ndel colaborador
+SRV --> REPO
+REPO --> CACHE : obtener(clave, cargar)
+REPO --> DB : SQL (lecturas)
+REPO --> COLA : completar (v3)
+COLA --> ESC
+ESC --> DB : INSERT por lotes
+U2 ..> DB : crea matrículas\n(cargue de RRHH)
+U1 ..> DB : catálogo de cursos
+@enduml
