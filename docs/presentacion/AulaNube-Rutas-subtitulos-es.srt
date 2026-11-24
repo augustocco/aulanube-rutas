@@ -1,0 +1,715 @@
+1
+00:00:00,550 --> 00:00:04,430
+Cordial saludo para todos, mi nombre es
+Augusto César Cañola Ortiz y esta es la
+
+2
+00:00:04,430 --> 00:00:09,250
+actividad 6 de la unidad 3 navegando mareas.
+Cierro el caso AulaNube, la plataforma
+
+3
+00:00:09,250 --> 00:00:13,472
+de capacitación de las unidades 1 y 2 con un
+problema de navegación que cualquiera
+
+4
+00:00:13,472 --> 00:00:17,893
+que haya usado una plataforma de cursos
+reconoce. Entrar y no saber que hacer
+
+5
+00:00:17,893 --> 00:00:22,891
+primero. del cargue de recursos humanos de la
+unidad anterior, colaborador ya está
+
+6
+00:00:22,891 --> 00:00:28,920
+matriculado entra y ve sus cursos en orden
+alfabético entonces primero dos electivos
+
+7
+00:00:28,920 --> 00:00:34,196
+luego la inducción, alturas y riesgo
+eléctrico. Nada le dice que su certificado de
+
+8
+00:00:34,196 --> 00:00:39,998
+alturas vence pronto ni que el avanzado exige
+el básico. di lo que pasa si sigue esa
+
+9
+00:00:39,998 --> 00:00:46,937
+lista solo el 61 por ciento de los cursos
+obligatorio obligatorio termina tiempo y
+
+10
+00:00:46,937 --> 00:00:53,637
+por dentro la plataforma hace 88 consultas a
+la base a para dibujar esa lista como
+
+11
+00:00:53,637 --> 00:00:58,468
+quien va a la bodega a traer un tornillo por
+ejemplo a la vez y el catálogo en peor a
+
+12
+00:00:58,468 --> 00:01:03,928
+medida que bajas entonces la página
+2500 tarda 131 milisegundos
+
+13
+00:01:04,705 --> 00:01:10,305
+antes de diseñar miré cómo resuelven la
+navegación tres tipos de sistema que todos
+
+14
+00:01:10,305 --> 00:01:15,325
+usamos entonces una aplicación de mapas por
+ejemplo no te muestra las calles en
+
+15
+00:01:15,325 --> 00:01:20,897
+orden alfabético te propone la mejor ruta y
+respeta las calles de un solo sentido en
+
+16
+00:01:20,897 --> 00:01:28,992
+ala nube eso es respetar qué curso va antes de
+cuál otro ejemplo otro otro referente
+
+17
+00:01:28,992 --> 00:01:34,052
+que tomamos es una tienda en línea cuando
+bajas por los productos sigue desde el
+
+18
+00:01:34,052 --> 00:01:40,536
+último que viste eso lo sé en el catálogo y
+una plataforma de vídeo te muestra
+
+19
+00:01:40,536 --> 00:01:48,675
+primero lo que más te interesa entonces aquí lo
+primero es lo más urgente eso definí
+
+20
+00:01:48,675 --> 00:01:54,595
+cuatro metas medibles que en atán se llaman
+escenarios de calidad entonces una
+
+21
+00:01:54,595 --> 00:02:00,440
+situación y la respuesta que se espera con un
+número para comprobar entonces uno que
+
+22
+00:02:00,440 --> 00:02:06,427
+más cursos obligatorios terminen a tiempo que
+con la lista de hoy dos que continuar
+
+23
+00:02:06,427 --> 00:02:09,538
+lleve en un clic a la lección que falta
+
+24
+00:02:10,358 --> 00:02:17,958
+que con 50 personas a la vez 95 de cada 100
+clics respondan en menos de dos décimas
+
+25
+00:02:17,958 --> 00:02:24,610
+de segundo y cuatro que bajar en el catálogo
+no lo vuelva más lento en este caso
+
+26
+00:02:24,610 --> 00:02:31,077
+para este ejercicio y también en la unidad 1 y
+2 traje de forma individual asumiendo
+
+27
+00:02:31,077 --> 00:02:38,257
+por fases los roles de líder investigador de
+patrones diseñador UML y programas
+
+28
+00:02:39,423 --> 00:02:47,026
+entonces así estar mal en tres capas arriba
+el navegador del colaborador las
+
+29
+00:02:47,026 --> 00:02:53,689
+pantallas y el historial del botón atrás en el
+medio el servicio de rutas que hace
+
+30
+00:02:53,689 --> 00:02:54,689
+cuatro trabajos
+
+31
+00:02:55,664 --> 00:03:02,398
+la ruta recorre el curso avisa cuando algo
+cambia y guardan memoria lo que ya
+
+32
+00:03:02,398 --> 00:03:08,818
+calculó un detalle importante este servicio
+no guarda nada de cada usuario entre
+
+33
+00:03:08,818 --> 00:03:15,080
+clic y otro como un cajero que no necesita
+conocerte para atenderte por eso se
+
+34
+00:03:15,080 --> 00:03:25,060
+pueden abrir varios iguales si llega más
+gente abajo la base de datos del LMS la
+
+35
+00:03:25,060 --> 00:03:30,840
+misma de las unidades anteriores donde la
+malla de cargués de la unidad 2 deja las
+
+36
+00:03:30,840 --> 00:03:36,937
+matrículas y al lado la cola de
+avance de la iteración 3
+
+37
+00:03:38,079 --> 00:03:44,099
+es el mismo dibujo UML el diagrama de
+componentes y se lee de izquierda a derecha
+
+38
+00:03:44,099 --> 00:03:50,179
+entonces a la izquierda tenemos el
+colaborador y su navegador con la vista y el
+
+39
+00:03:50,179 --> 00:03:57,308
+navegador de comandos que guarda el historial
+en el centro el recuadro grande es el
+
+40
+00:03:57,308 --> 00:04:04,705
+servicio de rutas la api recibe el clic el
+servicio de navegación reparte el trabajo
+
+41
+00:04:04,705 --> 00:04:09,831
+entre las estrategias de ruta el contenido del
+curso el publicador de eventos y el
+
+42
+00:04:09,831 --> 00:04:16,431
+repositorio que usa la caché para la que ya
+calculó y la cola con su escritor para
+
+43
+00:04:16,431 --> 00:04:22,926
+guardar de la base y a la derecha la base LMS
+que también alimenta el servicio de
+
+44
+00:04:22,926 --> 00:04:30,039
+cursos de la unidad 1 y la malla de cargués de
+la unidad 2 patrón entonces resolvi
+
+45
+00:04:30,039 --> 00:04:35,819
+un problema concreto y lo explico con el con
+algo cotidiano entonces estrategia es
+
+46
+00:04:35,819 --> 00:04:42,062
+como elegir un el que es como elegir en el GPS
+ruta más rápida o sin pedagés cambia
+
+47
+00:04:42,062 --> 00:04:47,929
+el criterio no el mapa así compare el orden
+alfabético por fecha y por urgencia
+
+48
+00:04:47,929 --> 00:04:56,863
+composit es una caja que tiene cajas adentro
+entonces el curso tiene módulos y los
+
+49
+00:04:56,863 --> 00:05:03,589
+módulos lecciones y ya cualquiera le puede
+preguntar cuánto le falta el iterador
+
+50
+00:05:04,526 --> 00:05:11,363
+el dedo que recorre el índice saltando lo
+ya leído así continuar encuentra tu
+
+51
+00:05:11,363 --> 00:05:17,487
+lección pendiente como es como el historial
+del navegador cada clic queda anotado y
+
+52
+00:05:17,487 --> 00:05:24,429
+por eso funciona atrás el observer es una
+suscripción cuando completas una lección
+
+53
+00:05:24,429 --> 00:05:30,699
+se avisa a quién le interese y la memoria
+borra tu ruta de viaje y el caché asai es
+
+54
+00:05:30,699 --> 00:05:36,119
+apuntar en un papel lo que ya calculaste
+para no volver a calcular en cada
+
+55
+00:05:37,163 --> 00:05:43,603
+esto lo que pasa por dentro paso a paso
+entonces al dar clic en continuar primero se
+
+56
+00:05:43,603 --> 00:05:48,543
+pregunta si tu ruta ya está calculada en
+memoria si no se arma con sólo dos
+
+57
+00:05:48,543 --> 00:05:54,981
+consultas a la base y se ordena por urgencia
+luego toma el primer curso que puedas
+
+58
+00:05:54,981 --> 00:06:02,612
+empezar el iterador busca la siguiente
+lección que te falta y se abre y al marcar
+
+59
+00:06:02,612 --> 00:06:11,694
+completado o completada el avance se anota en
+la cola si avisa para ahorrar tu vida
+
+60
+00:06:11,694 --> 00:06:17,725
+tu ruta vieja y se abre la lección siguiente
+este es el corazón como se ordena la
+
+61
+00:06:17,725 --> 00:06:24,036
+ruta un ejemplo con tres cursos de cuatro
+días cada uno entonces tenemos alturas
+
+62
+00:06:25,675 --> 00:06:26,675
+avanzado
+
+63
+00:06:26,705 --> 00:06:35,004
+el día ocho y exige el básico el básico y
+riesgo eléctrico vencen con la campaña más
+
+64
+00:06:35,004 --> 00:06:40,484
+adelante entonces en la fila arriba primero
+pues si lo ordenamos por primero lo que
+
+65
+00:06:40,484 --> 00:06:46,099
+vencen entonces el avanzado en este caso vemos
+que va a llegar tarde cierto porque
+
+66
+00:06:45,999 --> 00:06:50,912
+si yo lo ordeno entonces en cambio por
+urgencia voy a tener que primero tengo que
+
+67
+00:06:50,912 --> 00:06:56,514
+hacer el básico ya que es un prerequisito
+del avanzado hago el avanzado estoy a
+
+68
+00:06:56,514 --> 00:07:00,954
+tiempo y riesgo eléctrico no tengo ningún
+problema porque se vence con la campaña en
+
+69
+00:07:00,954 --> 00:07:08,115
+el día 12 es el GPS que sabe que antes de la
+autopista hay que pasar por el retorno
+
+70
+00:07:08,115 --> 00:07:09,915
+vamos a dar una demostración
+
+71
+00:07:11,586 --> 00:07:18,755
+entonces qué tenemos acá yo tengo acá la
+versión 1 y una versión 3 entonces en la
+
+72
+00:07:18,755 --> 00:07:23,422
+versión 1 tenemos este colaborar que se llama
+luisa rodríguez lo tenemos en ambas
+
+73
+00:07:23,422 --> 00:07:29,661
+versiones y en esta versión 1 yo lo estoy
+ordenando de manera alfabética
+
+74
+00:07:30,421 --> 00:07:35,581
+qué pasa listo si yo me voy en este orden qué
+va a pasar voy a llegar al que tengo
+
+75
+00:07:35,581 --> 00:07:42,840
+que cumplir antes de la fecha voy a llegar
+tarde y en cambio en la versión 3 si yo
+
+76
+00:07:42,840 --> 00:07:48,941
+lo organizo por urgencia él me va a dar un
+orden diferente así que ya es inducción
+
+77
+00:07:48,941 --> 00:07:54,781
+luego me va a mostrar el de trabajo en altura
+es nivel básico que es pre -requisito
+
+78
+00:07:54,781 --> 00:07:59,881
+de nivel avanzado y de esta manera yo voy a
+llegar a tiempo con los cuatro cursos
+
+79
+00:07:59,881 --> 00:08:04,621
+que tengo como obligatorios y los opcionales
+pues no tengo ningún problema cierto lo
+
+80
+00:08:04,621 --> 00:08:10,608
+otro que tenemos acá es el tema de las
+consultas entonces en esta primer versión él
+
+81
+00:08:10,608 --> 00:08:16,908
+me está haciendo 92 consultas y tienen una
+demora de 15 36 milisegundos mientras que
+
+82
+00:08:16,908 --> 00:08:22,878
+en esta versión 3 me está haciendo solamente
+tres consultas a la base de datos y me
+
+83
+00:08:22,878 --> 00:08:26,135
+está generando esto en un tiempo de 0 .63
+
+84
+00:08:27,555 --> 00:08:32,838
+milisegundos si yo le doy continuar en esta
+versión 3 entonces él me va a continuar
+
+85
+00:08:32,838 --> 00:08:40,688
+en la lección que yo ya pues que sigue ya
+después de la última completada entonces
+
+86
+00:08:40,688 --> 00:08:45,990
+acá de una también estoy reduciendo ese
+tiempo acá no yo acá tendría que venir a
+
+87
+00:08:45,990 --> 00:08:53,046
+buscar pues tendría que venir a darle clic en
+la que continúa si yo le doy siguiente
+
+88
+00:08:53,046 --> 00:08:58,286
+marcar cómo completada y seguir él me
+completas a lección y me avanza
+
+89
+00:08:58,286 --> 00:09:03,816
+automáticamente a la siguiente así
+sucesivamente y miren que también automáticamente
+
+90
+00:09:03,816 --> 00:09:08,576
+él me está pasando al siguiente curso que
+tengo que realizar si yo me devuelvo a mi
+
+91
+00:09:08,576 --> 00:09:13,842
+ruta miren que incluso acá el tiempo fue
+mucho mucho menos porque porque en este
+
+92
+00:09:13,842 --> 00:09:19,162
+caso es como si esté dándole atrás está
+guardando todos esos comandos y todas esas
+
+93
+00:09:19,162 --> 00:09:22,642
+consultas que ya hice en caché mientras me
+está diciendo mira aquí ya no se
+
+94
+00:09:22,642 --> 00:09:33,624
+redesionó ninguna consulta y el tiempo pues de
+carga fue 0 .1 milisegundos y lo si
+
+95
+00:09:33,624 --> 00:09:39,224
+si yo lo dejaba como estaba anterior pues
+también aquí tenía un cargue de consultas
+
+96
+00:09:39,224 --> 00:09:45,339
+mucho más alto en cambio así él me va haciendo
+miren que me haces una sola consulta
+
+97
+00:09:45,339 --> 00:09:51,159
+y en un tiempo promedio muy muy
+muy liviano muy corto
+
+98
+00:09:52,006 --> 00:09:56,477
+ya en métricas que tenemos entonces
+la ruta nueva ayuda a cumplir
+
+99
+00:09:57,510 --> 00:10:02,969
+responderlo simule a los 2 mil colaboradores
+de prueba cada uno estudia sus minutos
+
+100
+00:10:02,969 --> 00:10:07,289
+diarios siguiendo el orden que le muestra la
+plataforma y miren cuántos cursos
+
+101
+00:10:07,289 --> 00:10:13,079
+obligatorios terminan antes de su fecha límite
+leámoslo como dice como de cada 100
+
+102
+00:10:13,079 --> 00:10:15,039
+cursos entonces con el orden alfabético
+
+103
+00:10:16,616 --> 00:10:17,616
+hoy
+
+104
+00:10:18,829 --> 00:10:28,397
+61 de cada 100 terminan a tiempo con la ruta
+por urgencia en este caso 70 75 de
+
+105
+00:10:29,590 --> 00:10:36,333
+100 entonces terminan a tiempo en porque no
+basta con ordenar por fecha abajo está
+
+106
+00:10:36,333 --> 00:10:41,253
+la respuesta entonces en los reentrenamientos
+que dependen de otros cursos hay un
+
+107
+00:10:41,253 --> 00:10:47,959
+curso de pre requisito ordenar por fecha
+logra 23 de cada 100 y la urgencia 42
+
+108
+00:10:47,959 --> 00:10:53,445
+porque sólo la urgencia adelanta el curso que
+es requisito entonces es como un GPS
+
+109
+00:10:53,445 --> 00:11:00,315
+que sabe que antes de la autopista hay que
+pasar por un retorno ahora aguanta mucha
+
+110
+00:11:00,315 --> 00:11:05,235
+gente a la vez en este caso simule 50
+colaboradores durante 20 segundos haciéndolo
+
+111
+00:11:05,235 --> 00:11:11,055
+de siempre ver su ruta continuar marca
+lecciones completadas y mirar el catálogo
+
+112
+00:11:11,055 --> 00:11:16,091
+piénselo en común supermercado con 50
+clientes en cada la barra dicen cuántas
+
+113
+00:11:16,091 --> 00:11:21,701
+solicitudes atiende el sistema por segundo
+entonces hoy la iteración 1 o la versión
+
+114
+00:11:21,701 --> 00:11:31,807
+1 atiende 138 con la iteración 2 logramos
+atender 208 y con y con la iteración 3
+
+115
+00:11:31,807 --> 00:11:33,647
+entonces atendemos a 991
+
+116
+00:11:35,272 --> 00:11:43,507
+7 veces más a la derecha está lo que siente el
+usuario pasamos de 18 segundos cuando
+
+117
+00:11:43,507 --> 00:11:49,456
+marcado una lección completada 5 de cada 100
+veces espera esto o más de 18 segundos
+
+118
+00:11:49,456 --> 00:11:54,975
+pasamos a 0 .02 segundos y la peor espera
+que era cuando se le daba clíano algo
+
+119
+00:11:54,975 --> 00:12:00,735
+entonces pasamos de 11 segundos a 0 .11
+segundos el code empieza aquí lo que tenemos
+
+120
+00:12:00,735 --> 00:12:05,254
+porque hicieron falta 3 iteraciones entonces
+sigamos con el supermercado en la
+
+121
+00:12:05,254 --> 00:12:10,683
+iteración 1 el cajero busca el precio de cada
+producto en una lista arma la ruta de
+
+122
+00:12:10,683 --> 00:12:17,175
+una persona costa 88 consultas a la base en
+la iteración 2 le pusimos lector de
+
+123
+00:12:17,175 --> 00:12:23,283
+código de barras caché índices y 3 consultas
+leer quedó rapidísimo pero apareció
+
+124
+00:12:23,283 --> 00:12:30,394
+otra fila hay un solo datáfono para pagar
+entonces la base admite un solo escritor y
+
+125
+00:12:30,394 --> 00:12:35,854
+cada completar esperaba su por eso la
+iteración 2 casi no mejoró con mucha gente en
+
+126
+00:12:35,854 --> 00:12:41,134
+la iteración 3 el cajero anotó los pagos y
+los pasa a todos juntos cada 100 mil y
+
+127
+00:12:41,134 --> 00:12:46,994
+segundos y la fila desaparece el siguiente
+tapón ya es que hay un solo cajero
+
+128
+00:12:46,994 --> 00:12:53,106
+entonces la cpu un solo servidor la solución
+sería abrir más cajas es decir más
+
+129
+00:12:53,106 --> 00:12:57,952
+instancias es a la lección de la unidad el
+cuello de botella se mueve y cada mejora
+
+130
+00:12:57,952 --> 00:13:03,695
+tiene su costo ejemplo si el servidor en este
+caso se cae se puede perder hasta 100
+
+131
+00:13:03,695 --> 00:13:09,340
+mil y segundos de avance por último porque
+el catálogo se pone lento al bajar
+
+132
+00:13:09,340 --> 00:13:16,876
+entonces imaginen un catálogo de 50 mil cursos
+de 20 en 20 pedir la página 2500 es
+
+133
+00:13:16,876 --> 00:13:19,536
+pedir los últimos 20 cursos
+
+134
+00:13:20,403 --> 00:13:26,123
+la base lo resuelve como quien busca la
+página 500 de un libro contando hoja por
+
+135
+00:13:26,123 --> 00:13:34,314
+hoja desde el principio entonces cuenta y
+descarta los 49 1980 cursos anteriores por
+
+136
+00:13:34,314 --> 00:13:44,646
+eso la página 1 tarda 10 mil y segundos y la
+2500 y la 2500 331 13 veces más la
+
+137
+00:13:44,646 --> 00:13:49,346
+versión nueva usa un marco marca páginas
+recuerda el último curso que viste y
+
+138
+00:13:49,346 --> 00:13:54,290
+continúa desde ahí sin contar nada por eso
+cualquier página cuesta lo mismo
+
+139
+00:13:55,194 --> 00:14:01,070
+de una décima de mil y segundo como para quien
+busca un electivo cada cargar 20 más
+
+140
+00:14:01,070 --> 00:14:04,800
+siente igual de rápido al principio que al
+final no conclusiones me quedo con tres
+
+141
+00:14:04,800 --> 00:14:09,780
+ideas navegar bien es un problema
+arquitectura un criterio de orden subió el
+
+142
+00:14:09,780 --> 00:14:15,048
+cumplimiento más que cualquiera justa de
+pantalla medir antes de optimizar me mostró
+
+143
+00:14:15,048 --> 00:14:20,628
+que el cuello o talla se mueve y cada patrón y
+cada optimización se justificaron por
+
+144
+00:14:20,628 --> 00:14:24,931
+un problema concreto y con un
+coste explícito el código
+
+145
+00:14:27,559 --> 00:14:33,459
+los diagramas y el informe van a encontrar
+en este repositorio y muchas gracias

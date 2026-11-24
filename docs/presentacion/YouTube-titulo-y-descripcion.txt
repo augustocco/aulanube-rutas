@@ -2,12 +2,32 @@ TÍTULO (máximo 100 caracteres)
 AulaNube Rutas: estrategias de navegación y optimización de arquitectura | Arquitectura de Software U3
 
 VISIBILIDAD: No listado
+ARCHIVO: AulaNube-Rutas-video-editado.mp4 (14 min 35 s)
+SUBTÍTULOS: AulaNube-Rutas-subtitulos-es.srt (Subtítulos → Agregar idioma → Español → Subir archivo)
 
 DESCRIPCIÓN
 Actividad 6 «Navegando mareas: Estrategias de navegación en la arquitectura de software» del curso Arquitectura de Software (Unidad 3), Tecnológica del Oriente.
 
 AulaNube Rutas le arma a cada colaborador su ruta de formación por urgencia (prerrequisitos, cierre de campaña y vencimiento de certificados) y lo lleva con un clic a su siguiente lección. El video presenta el problema de navegación, los diagramas UML (componentes, clases, secuencia y actividad), los patrones Strategy, Composite, Iterator, Command y Observer, una demostración del prototipo y la evaluación en tres iteraciones con pruebas de carga, en la que el cuello de botella se desplazó de las lecturas a la escritura.
 
+CAPÍTULOS
+0:00 Presentación
+0:18 El problema: entrar y no saber qué hacer
+1:04 Cómo navegan otros sistemas
+1:47 Escenarios de calidad (ATAM)
+2:39 Arquitectura en tres capas
+3:37 Diagrama de componentes UML
+4:28 Patrones de diseño
+5:36 Qué pasa al dar clic (secuencia)
+6:15 Ruta por urgencia: ejemplo
+7:08 Demostración en Oracle Cloud
+9:51 Resultado: más cursos a tiempo
+10:58 Prueba de carga con 50 personas
+12:00 El cuello de botella se mueve
+13:05 Catálogo: el marcapáginas
+14:03 Conclusiones
+
+Prototipo en Oracle Cloud: https://rutas.149-130-191-139.sslip.io (iteración 3) y https://rutas-v1.149-130-191-139.sslip.io (iteración 1)
 Repositorio: https://github.com/augustocco/aulanube-rutas
 Autor: Augusto César Cañola Ortiz · Docente: Ing. Leydi Johana Polo Amador
 
