@@ -218,10 +218,14 @@ BLOQUES = [
      "servidor; la solución sería abrir más cajas, es decir, más instancias. Esa es la lección de la unidad: el cuello "
      "de botella se mueve, y cada mejora tiene su costo; por ejemplo, si el servidor se cae, se pueden perder hasta 100 "
      "milisegundos de avance."),
-    ("12:20 – 13:00", "13 · Catálogo", "Señalar la línea naranja que sube y la verde plana.",
-     "Por último, el catálogo. Con OFFSET, para mostrarte la página 2.500 la base cuenta y descarta 50.000 cursos, como "
-     f"leer un libro desde la primera página cada vez: {n(E3['v1'][PMAX], 0)} milisegundos. Con la paginación por llave, "
-     "es un marcapáginas: cualquier página cuesta lo mismo, menos de una décima de milisegundo."),
+    ("12:20 – 13:00", "13 · Catálogo", "Señalar la barra naranja alta; luego las dos tarjetas de la derecha.",
+     "Por último, ¿por qué el catálogo se pone lento al bajar? Imaginen un catálogo de 50.000 cursos, de 20 en 20. "
+     "Pedir la página 2.500 es pedir los últimos 20 cursos. Hoy la base lo resuelve como quien busca la página 500 de "
+     "un libro contando hoja por hoja desde el principio: cuenta y descarta los 49.980 cursos anteriores. Por eso la "
+     f"página 1 tarda {n(E3['v1']['1'], 0)} milisegundos y la 2.500, {n(E3['v1'][PMAX], 0)}: trece veces más. La "
+     "versión nueva usa un marcapáginas: recuerda el último curso que viste y continúa desde ahí, sin contar nada. "
+     "Por eso cualquier página cuesta lo mismo, menos de una décima de milisegundo. Para quien busca un electivo, "
+     "cada «Cargar 20 más» se siente igual de rápido al principio que al final."),
     ("13:00 – 13:45", "14 · Conclusiones", "Cierre.",
      "Me quedo con tres ideas. Navegar bien es un problema de arquitectura: un criterio de orden subió el cumplimiento "
      "más que cualquier ajuste de pantalla. Medir antes de optimizar me mostró que el cuello de botella se mueve. Y "
@@ -381,11 +385,16 @@ for k, (num_, tit, analogia, tecnico, cifra, color) in enumerate(etapas):
 caja(s, 0.5, 4.5, 9.0, 0.45, "Siguiente tapón: un solo cajero (la CPU de un servidor) → abrir más cajas (más instancias sin estado).", 13, AC1, True)
 
 # 13 · Catálogo
-s = contenido("Catálogo: un marcapáginas en lugar de contar")
-imagen(s, RES / "fig-catalogo.png", 0.5, 1.2, w=6.0, marco=False)
-puntos(s, 6.8, 1.35, 2.7, [f"OFFSET: página {n(int(PMAX), 0)} en {n(E3['v1'][PMAX], 0)} ms",
-                           f"Keyset + índice: {n(E3['v2'][PMAX], 2)} ms en cualquier página",
-                           "Cursor opaco y seguro para URL"], 1.1, 13)
+s = contenido("¿Por qué el catálogo se pone lento al bajar?")
+caja(s, 0.5, 1.05, 9.0, 0.5, f"Catálogo de 50.000 cursos, de 20 en 20. Pedir la página {n(int(PMAX), 0)} es pedir los últimos 20 cursos.", 14, AC5)
+imagen(s, RES / "ppt-catalogo.png", 0.4, 1.55, w=5.2, h=3.4, marco=False)
+for k, (tit, desc, color) in enumerate([
+        ("Hoy: contar hoja por hoja", "Como buscar la página 500 de un libro contando desde el principio: la base cuenta y descarta los 49.980 cursos anteriores.", AC2),
+        ("Nueva: un marcapáginas", "Recuerda el último curso que viste y sigue desde ahí. No cuenta nada: cualquier página cuesta lo mismo.", AC1)]):
+    y = 1.6 + k * 1.65
+    tarjeta(s, 5.9, y, 3.6, 1.5)
+    caja(s, 6.1, y + 0.12, 3.25, 0.35, tit, 14, color, True)
+    caja(s, 6.1, y + 0.52, 3.25, 0.95, desc, 12)
 
 # 14 · Conclusiones
 s = prs.slides.add_slide(L["SECCION"])

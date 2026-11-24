@@ -151,3 +151,32 @@ def ppt_carga() -> None:
 
 ppt_ruta()
 ppt_carga()
+
+
+def ppt_catalogo() -> None:
+    """Tiempo para mostrar la página 1 y la página más profunda, hoy y con el marcapáginas."""
+    e = R["E3"]
+    pm = str(max(int(k) for k in e["v1"]))
+    grupos = [("Página 1", "1"), (f"Página {int(pm):,}".replace(",", "."), pm)]
+    fig, ax = plt.subplots(figsize=(4.6, 3.0))
+    ancho = 0.36
+    for g, (nombre, k) in enumerate(grupos):
+        for d, (v, color, etq) in enumerate(((e["v1"][k], V2, "Hoy"), (e["v2"][k], V3, "Nueva"))):
+            x = g + (d - 0.5) * (ancho + 0.04)
+            ax.bar(x, v, width=ancho, color=color, zorder=3)
+            texto = f"{num(v, 0)} ms" if v >= 1 else f"{num(v, 2)} ms"
+            ax.text(x, v + 3, texto, ha="center", va="bottom", fontsize=12, fontweight="bold", color=TINTA)
+    ax.set_xticks(range(2), [g[0] for g in grupos], fontsize=12)
+    ax.set_ylim(0, e["v1"][pm] * 1.25)
+    ax.set_yticks([])
+    ax.grid(False)
+    ax.spines[["left"]].set_visible(False)
+    ax.set_title("Tiempo para mostrar una página", loc="left", fontsize=12)
+    ax.legend(handles=[Patch(color=V2, label="Hoy (contando)"), Patch(color=V3, label="Nueva (marcapáginas)")],
+              frameon=False, fontsize=10, loc="upper left")
+    fig.tight_layout()
+    fig.savefig(SAL / "ppt-catalogo.png")
+    plt.close(fig)
+
+
+ppt_catalogo()
