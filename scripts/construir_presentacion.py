@@ -27,7 +27,7 @@ SALIDA = RAIZ / "docs" / "presentacion" / "Presentacion-AulaNube-Rutas.pptx"
 GUION = RAIZ / "docs" / "presentacion" / "Guion-video-AulaNube-Rutas.docx"
 R = json.loads((RAIZ / "docs" / "resultados" / "resultados.json").read_text(encoding="utf-8"))
 UML, RES, CAP = RAIZ / "docs" / "uml", RAIZ / "docs" / "resultados", RAIZ / "docs" / "capturas"
-VIDEO = sys.argv[1] if len(sys.argv) > 1 else ""
+VIDEO = sys.argv[1] if len(sys.argv) > 1 else "https://youtu.be/EvA5yuhSqIA"
 
 
 def n(x, d=1):

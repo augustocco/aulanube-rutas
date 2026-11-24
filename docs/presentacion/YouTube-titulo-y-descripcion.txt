@@ -2,6 +2,7 @@ TÍTULO (máximo 100 caracteres)
 AulaNube Rutas: estrategias de navegación y optimización de arquitectura | Arquitectura de Software U3
 
 VISIBILIDAD: No listado
+ENLACE: https://youtu.be/EvA5yuhSqIA
 ARCHIVO: AulaNube-Rutas-video-editado.mp4 (14 min 35 s)
 SUBTÍTULOS: AulaNube-Rutas-subtitulos-es.srt (Subtítulos → Agregar idioma → Español → Subir archivo)
 

@@ -26,7 +26,7 @@ UML = RAIZ / "docs" / "uml"
 RES = RAIZ / "docs" / "resultados"
 CAP = RAIZ / "docs" / "capturas"
 
-VIDEO = sys.argv[1] if len(sys.argv) > 1 else ""
+VIDEO = sys.argv[1] if len(sys.argv) > 1 else "https://youtu.be/EvA5yuhSqIA"
 REPO = "https://github.com/augustocco/aulanube-rutas"
 
 
